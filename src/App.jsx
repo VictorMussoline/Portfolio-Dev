@@ -131,7 +131,7 @@ export default function Portfolio() {
               <ProjectCard
                 title="Base de Conhecimento de Games Retrô"
                 description="Projeto feito na imersão da Alura usando IA."
-                tech="ReactJS · Firebase · TailwindCSS"
+                tech="HTML · Google Gemini · Google API"
                 github="https://github.com/VictorMussoline/imersao-dev-alura-10"
                 demo="https://victormussoline.github.io/imersao-dev-alura-10/"
               />
