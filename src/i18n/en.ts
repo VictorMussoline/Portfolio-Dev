@@ -26,11 +26,32 @@ export const en = {
   },
   features: {
     title: "Why work with me",
-    f1: "Full-stack development focused on scalable architecture",
-    f2: "Experience with version control (Git & GitHub)",
-    f3: "Creation of clean and responsive interfaces",
-    f4: "Strong attention to User Experience (UX)",
-    f5: "Structured code following best practices",
+    list: [
+      {
+        title: "Full-Stack Development",
+        text: "Creation of complete applications (Web and Mobile), connecting modern interfaces to robust backends natively."
+      },
+      {
+        title: "Certified Advanced English (C1)",
+        text: "Proven solid fluency (DET Score 130), ready to collaborate in global teams, meetings, and international documentation."
+      },
+      {
+        title: "Relational Architecture & APIs",
+        text: "Consistent and secure data modeling with Supabase and PostgreSQL, focused on integrity and fast responses."
+      },
+      {
+        title: "High-Performance Interfaces",
+        text: "Ultra-fast and fluid screens built with Vite, TypeScript, and Tailwind CSS, prioritizing user experience (UX/UI)."
+      },
+      {
+        title: "Mobile Development",
+        text: "Creation of smartphone applications (focusing on React Native), expanding the product's reach beyond the browser."
+      },
+      {
+        title: "Refactoring & Scalability",
+        text: "Ability to evolve legacy stacks into modern architectures, optimizing costs, performance, and code maintenance."
+      }
+    ]
   },
   contact: {
     title: "Let's talk?",

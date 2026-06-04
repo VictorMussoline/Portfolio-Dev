@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, CheckCircle2, Globe, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
@@ -10,6 +10,11 @@ import { ProjectCard } from "./components/ProjectCard";
 import { ContactForm } from "./components/ContactForm";
 import { CustomCursor } from "./components/CustomCursor";
 import { ParticlesBackground } from "./components/ParticlesBackground";
+import { MagneticElement } from "./components/MagneticElement";
+import { ProjectSkeleton } from "./components/ProjectSkeleton";
+import Tilt from "react-parallax-tilt";
+
+const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
 
 export default function Portfolio() {
   const { t, lang, toggleLang } = useI18n();
@@ -25,13 +30,15 @@ export default function Portfolio() {
       <ParticlesBackground />
 
       <div style={{ position: "fixed", top: "1.5rem", right: "2rem", zIndex: 100 }}>
-        <button 
-          onClick={toggleLang}
-          className="btn-outline"
-          style={{ padding: "0.5rem 1rem", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.5rem" }}
-        >
-          <Globe size={16} /> {lang === "pt" ? "EN" : "PT"}
-        </button>
+        <MagneticElement>
+          <button 
+            onClick={toggleLang}
+            className="btn-outline"
+            style={{ padding: "0.5rem 1rem", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <Globe size={16} /> {lang === "pt" ? "EN" : "PT"}
+          </button>
+        </MagneticElement>
       </div>
 
       {/* HERO SECTION COM PARALLAX */}
@@ -56,19 +63,26 @@ export default function Portfolio() {
 
           <motion.div 
             className="buttons"
+            style={{ display: "flex", gap: "1.5rem", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a className="btn-primary" href="#projects">
-              {t.hero.btnProjects}
-            </a>
-            <a className="btn-outline" href="#contact">
-              {t.hero.btnContact}
-            </a>
-            <a className="btn-outline" href="/cv.pdf" download="Victor_Mussoline_Curriculo.pdf" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <Download size={18} /> {t.hero.btnCV}
-            </a>
+            <MagneticElement>
+              <a className="btn-primary" href="#projects">
+                {t.hero.btnProjects}
+              </a>
+            </MagneticElement>
+            <MagneticElement>
+              <a className="btn-outline" href="#contact">
+                {t.hero.btnContact}
+              </a>
+            </MagneticElement>
+            <MagneticElement>
+              <a className="btn-outline" href="/cv.pdf" download="Victor_Mussoline_Curriculo.pdf" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <Download size={18} /> {t.hero.btnCV}
+              </a>
+            </MagneticElement>
           </motion.div>
         </motion.div>
       </section>
@@ -92,18 +106,24 @@ export default function Portfolio() {
           <h2 className="section-title">{t.stack.title}</h2>
         </AnimateOnScroll>
         <div className="grid-3">
-          <TechCard
-            title={t.stack.frontend}
-            items={["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind"]}
-          />
-          <TechCard
-            title={t.stack.backend}
-            items={["Java", "Node.js", "Python", "Firebase", "Supabase", "APIs REST"]}
-          />
-          <TechCard
-            title={t.stack.tools}
-            items={["Git", "GitHub", "Linux", "VS Code", "Hardware"]}
-          />
+          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+            <TechCard
+              title={t.stack.frontend}
+              items={["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind"]}
+            />
+          </Tilt>
+          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+            <TechCard
+              title={t.stack.backend}
+              items={["Java", "Node.js", "Python", "Firebase", "Supabase", "APIs REST"]}
+            />
+          </Tilt>
+          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+            <TechCard
+              title={t.stack.tools}
+              items={["Git", "GitHub", "Linux", "VS Code", "Hardware"]}
+            />
+          </Tilt>
         </div>
       </section>
 
@@ -115,7 +135,12 @@ export default function Portfolio() {
         </AnimateOnScroll>
         <div className="grid-2">
           {loading ? (
-            <p style={{ textAlign: "center", width: "100%", gridColumn: "1 / -1" }}>Carregando projetos...</p>
+            <>
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+              <ProjectSkeleton />
+            </>
           ) : (
             projects.map((repo) => (
               <ProjectCard
@@ -136,12 +161,20 @@ export default function Portfolio() {
         <AnimateOnScroll>
           <h2 className="section-title">{t.features.title}</h2>
           <ul className="features-list">
-            {[t.features.f1, t.features.f2, t.features.f3, t.features.f4, t.features.f5].map((feature, i) => (
-              <li key={i} className="feature-item">
-                <CheckCircle2 className="feature-icon" size={24} />
-                <span className="feature-text">{feature}</span>
-              </li>
-            ))}
+            {t.features.list.map((feature: any, i: number) => {
+              const Icon = FEATURE_ICONS[i] || Layers;
+              return (
+                <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+                  <li className="feature-item" style={{ flexDirection: "column", gap: "1rem", height: "100%" }}>
+                    <Icon className="feature-icon" size={36} />
+                    <div>
+                      <h3 style={{ fontSize: "1.2rem", marginBottom: "0.5rem", color: "var(--text-main)" }}>{feature.title}</h3>
+                      <p className="feature-text">{feature.text}</p>
+                    </div>
+                  </li>
+                </Tilt>
+              );
+            })}
           </ul>
         </AnimateOnScroll>
       </section>
@@ -156,15 +189,21 @@ export default function Portfolio() {
           
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3rem", maxWidth: "600px", margin: "0 auto" }}>
             <div className="socials" style={{ display: "flex", justifyContent: "center", gap: "1.5rem" }}>
-              <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
-                <Github size={28} />
-              </a>
-              <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
-                <Linkedin size={28} />
-              </a>
-              <a href="mailto:victor8augusto010604@hotmail.com" className="social-btn" aria-label="Email">
-                <Mail size={28} />
-              </a>
+              <MagneticElement>
+                <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
+                  <Github size={28} />
+                </a>
+              </MagneticElement>
+              <MagneticElement>
+                <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
+                  <Linkedin size={28} />
+                </a>
+              </MagneticElement>
+              <MagneticElement>
+                <a href="mailto:victor8augusto010604@hotmail.com" className="social-btn" aria-label="Email">
+                  <Mail size={28} />
+                </a>
+              </MagneticElement>
             </div>
             
             <div className="card" style={{ width: "100%" }}>

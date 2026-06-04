@@ -26,11 +26,32 @@ export const pt = {
   },
   features: {
     title: "Diferenciais",
-    f1: "Desenvolvimento full-stack com foco em arquitetura escalável",
-    f2: "Experiência com versionamento Git e GitHub",
-    f3: "Criação de interfaces limpas e responsivas",
-    f4: "Atenção à Experiência do Usuário (UX)",
-    f5: "Código estruturado seguindo boas práticas",
+    list: [
+      {
+        title: "Desenvolvimento Full-Stack",
+        text: "Criação de aplicações completas (Web e Mobile), conectando interfaces modernas a backends robustos de forma nativa."
+      },
+      {
+        title: "Inglês Avançado Certificado (C1)",
+        text: "Fluência sólida comprovada (Score 130 no DET), pronto para colaborar em times globais, reuniões e documentação internacional."
+      },
+      {
+        title: "Arquitetura Relacional e APIs",
+        text: "Modelagem de dados consistente e segura com Supabase e PostgreSQL, focada em integridade e respostas rápidas."
+      },
+      {
+        title: "Interfaces de Alta Performance",
+        text: "Telas ultra velozes e fluidas construídas com Vite, TypeScript e Tailwind CSS, priorizando a experiência do usuário (UX/UI)."
+      },
+      {
+        title: "Desenvolvimento Mobile",
+        text: "Criação de aplicativos para smartphones (com foco em React Native), expandindo o alcance do produto além do navegador."
+      },
+      {
+        title: "Refatoração e Escalabilidade",
+        text: "Capacidade de evoluir stacks legadas para arquiteturas modernas, otimizando custos, performance e manutenção do código."
+      }
+    ]
   },
   contact: {
     title: "Vamos conversar?",
