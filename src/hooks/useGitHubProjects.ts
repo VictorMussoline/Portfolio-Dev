@@ -15,7 +15,14 @@ export function useGitHubProjects(username: string) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`)
+    const token = import.meta.env.VITE_GITHUB_TOKEN;
+    const headers: HeadersInit = {};
+
+    if (token) {
+      headers.Authorization = `token ${token}`;
+    }
+
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=20`, { headers })
       .then((res) => res.json())
       .then((data: GitHubRepo[]) => {
         if (Array.isArray(data)) {

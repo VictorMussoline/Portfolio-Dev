@@ -16,9 +16,16 @@ import Tilt from "react-parallax-tilt";
 
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
 
+/**
+ * Main Application Component
+ * Integrates all sections (Hero, About, Stack, Projects, Contact)
+ * and manages global states like i18n, GitHub projects fetch, and parallax animations.
+ */
 export default function Portfolio() {
   const { t, lang, toggleLang } = useI18n();
-  const { projects, loading } = useGitHubProjects("VictorMussoline");
+  // Fetch repositories from GitHub API dynamically
+  const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || "VictorMussoline";
+  const { projects, loading } = useGitHubProjects(githubUsername);
   
   // Parallax effects
   const { scrollY } = useScroll();
