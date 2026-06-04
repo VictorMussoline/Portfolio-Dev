@@ -8,9 +8,8 @@ export const pt = {
   },
   about: {
     title: "Sobre mim",
-    p1: "Sou um desenvolvedor focado em entregar resultados. Minha experiência é voltada para a criação de soluções web performáticas e intuitivas, com foco em métricas de negócio e performance técnica.",
-    p2: "Sou o criador do FinControl, um app de gestão financeira de alto desempenho. Utilizei React, Tailwind CSS e Firebase para construir uma arquitetura escalável e fluida.",
-    p3: "Estou sempre em busca de desafios que exigem proficiência em todo o ciclo de vida do produto e uma mentalidade orientada a inovação.",
+    p1: "Sou desenvolvedor Full-Stack focado em transformar ideias em soluções digitais de alto impacto. Graduando em Sistemas de Informação, uno uma base sólida em arquitetura e métricas de negócio para criar aplicações web e mobile que alinham performance técnica à experiência do usuário.",
+    p2: "Sou o criador do FinControl, uma plataforma de gestão financeira de alto desempenho. Recentemente, liderei a refatoração do ecossistema do app, evoluindo a arquitetura para uma stack moderna com TypeScript, Vite, Tailwind CSS, Supabase e deploy na Vercel. Minha experiência engloba todo o ciclo de vida do produto — desde a modelagem de dados relacionais até interfaces fluidas e responsivas.",
   },
   stack: {
     title: "Stack Tecnológica",

@@ -8,9 +8,8 @@ export const en = {
   },
   about: {
     title: "About me",
-    p1: "I am a developer focused on delivering results. My experience is geared towards creating high-performance and intuitive web solutions, focusing on business metrics and technical performance.",
-    p2: "I am the creator of FinControl, a high-performance financial management app. I used React, Tailwind CSS, and Firebase to build a scalable and fluid architecture.",
-    p3: "I'm always looking for challenges that require proficiency across the entire product lifecycle and an innovation-driven mindset.",
+    p1: "I am a Full-Stack developer focused on transforming ideas into high-impact digital solutions. Pursuing a degree in Information Systems, I combine a solid foundation in architecture and business metrics to create web and mobile applications that align technical performance with user experience.",
+    p2: "I am the creator of FinControl, a high-performance financial management platform. Recently, I led the refactoring of the app's ecosystem, evolving the architecture to a modern stack with TypeScript, Vite, Tailwind CSS, Supabase, and deployment on Vercel. My experience encompasses the entire product lifecycle — from relational data modeling to fluid and responsive interfaces.",
   },
   stack: {
     title: "Tech Stack",
