@@ -1,25 +1,10 @@
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { useState } from "react";
 import "./App.css";
 
-// Mapeamento de nomes de tecnologias para URLs dos ícones
-const techIcons = {
-  HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-  CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-  React: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
-  "Node.js": "https://nodejs.org/static/logos/nodejsStackedLight.svg",
-  "APIs REST": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
-  Git: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-  GitHub: "https://img.icons8.com/ios11/512/FFFFFF/github.png",
-  Linux: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
-  "VS Code": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
-  Spring: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
-  PostgreSQL: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg", 
-  API: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/openapi/openapi-original.svg",
-  Firebase: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg"
-};
+import { AnimateOnScroll } from "./components/AnimateOnScroll";
+import { TechCard } from "./components/TechCard";
+import { ProjectCard } from "./components/ProjectCard";
 
 export default function Portfolio() {
   const [copySuccess, setCopySuccess] = useState('');
@@ -92,24 +77,18 @@ export default function Portfolio() {
           <h2 className="text-3xl font-semibold mb-10 text-center">Stack Tecnológica</h2>
           
           <div className="grid">
-            <AnimateOnScroll>
-              <TechCard
-                title="Front-End"
-                items={["HTML", "CSS", "JavaScript", "React"]}
-              />
-            </AnimateOnScroll>
-            <AnimateOnScroll>
-              <TechCard
-                title="Back-End"
-                items={["Java", "Node.js", "Firebase", "APIs REST"]}
-              />
-            </AnimateOnScroll>
-            <AnimateOnScroll>
-              <TechCard
-                title="Ferramentas"
-                items={["Git", "GitHub", "Linux", "VS Code"]}
-              />
-            </AnimateOnScroll>
+            <TechCard
+              title="Front-End"
+              items={["HTML", "CSS", "JavaScript", "React"]}
+            />
+            <TechCard
+              title="Back-End"
+              items={["Java", "Node.js", "Firebase", "APIs REST"]}
+            />
+            <TechCard
+              title="Ferramentas"
+              items={["Git", "GitHub", "Linux", "VS Code"]}
+            />
           </div>
         </div>
       </section>
@@ -119,30 +98,28 @@ export default function Portfolio() {
         <section id="projects" className="container">
           <h2 className="text-3xl font-semibold mb-10 text-center">Projetos</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <AnimateOnScroll>
-              <ProjectCard
-                title="FinControl"
-                description="Controle financeiro com autenticação e dados em tempo real."
-                tech="ReactJS · Firebase · TailwindCSS"
-                github="https://github.com/VictorMussoline/FinControl-Open"
-                demo="https://fincontrolvm.web.app/login"
-              />
-              <br/>
-              <ProjectCard
-                title="Base de Conhecimento de Games Retrô"
-                description="Projeto feito na imersão da Alura usando IA."
-                tech="HTML · Google Gemini · Google API"
-                github="https://github.com/VictorMussoline/imersao-dev-alura-10"
-                demo="https://victormussoline.github.io/imersao-dev-alura-10/"
-              />
-              <br/>
-              <ProjectCard
-                title="Portfólio Fotográfico"
-                description="Em breve."
-                tech="ReactJS · JavaScript Puro · TailwindCSS"
-                github="https://github.com/VictorMussoline"
-              />
-            </AnimateOnScroll>
+            <ProjectCard
+              title="FinControl"
+              description="Controle financeiro com autenticação e dados em tempo real."
+              tech="ReactJS · Firebase · TailwindCSS"
+              github="https://github.com/VictorMussoline/FinControl-Open"
+              demo="https://fincontrolvm.web.app/login"
+            />
+            <br/>
+            <ProjectCard
+              title="Base de Conhecimento de Games Retrô"
+              description="Projeto feito na imersão da Alura usando IA."
+              tech="HTML · Google Gemini · Google API"
+              github="https://github.com/VictorMussoline/imersao-dev-alura-10"
+              demo="https://victormussoline.github.io/imersao-dev-alura-10/"
+            />
+            <br/>
+            <ProjectCard
+              title="Portfólio Fotográfico"
+              description="Em breve."
+              tech="ReactJS · JavaScript Puro · TailwindCSS"
+              github="https://github.com/VictorMussoline"
+            />
           </div>
         </section>
       </AnimateOnScroll>
@@ -194,74 +171,5 @@ export default function Portfolio() {
         © {new Date().getFullYear()} Victor Mussoline
       </footer>
     </div>
-  );
-}
-
-function AnimateOnScroll({ children }) {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  return <div ref={ref} className={`fade-in ${isVisible ? 'is-visible' : ''}`}>{children}</div>;
-}
-
-function TechCard({ title, items }) {
-  return (
-    <AnimateOnScroll>
-      <div className="card">
-        <h3 className="tech-card-title">{title}</h3>
-        <div className="tech-items-grid">
-          {items.map((item) => (
-            <div key={item} className="tech-item">
-              <img src={techIcons[item]} alt={item} className="tech-icon" />
-              <span className="text-xs text-center text-zinc-300 font-semibold">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </AnimateOnScroll>
-  );
-}
-
-function ProjectCard({ title, description, tech, github, demo }) {
-  return (
-    <AnimateOnScroll>
-      <div className="card project">
-        <div>
-          <h3>{title}</h3>
-          <p>{description}</p>
-          <small>{tech}</small>
-        </div>
-        <div className="project-links">
-          <a href={github} target="_blank" rel="noopener noreferrer">
-            <Github size={18} /> GitHub
-          </a>
-          <a href={demo} target="_blank" rel="noopener noreferrer">
-            <ExternalLink size={18} /> Demo
-          </a>
-        </div>
-      </div>
-    </AnimateOnScroll>
   );
 }
