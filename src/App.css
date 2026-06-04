@@ -26,10 +26,32 @@
   --glow-shadow: 0 0 40px rgba(41, 151, 255, 0.1);
 }
 
-/* SCROLL SUAVE */
+/* SCROLL SUAVE & BARRA DE ROLAGEM */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  
+  /* Firefox */
+  scrollbar-width: thin; /* Mude para 'none' para ocultar totalmente */
+  scrollbar-color: rgba(255, 255, 255, 0.15) #050505;
+}
+
+/* Chrome, Edge e Safari */
+::-webkit-scrollbar {
+  width: 8px; /* Mude para '0px' ou adicione 'display: none;' para ocultar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 /* BODY E BACKGROUND DINÂMICO */
