@@ -1,175 +1,183 @@
-import { Github, Linkedin, Mail } from "lucide-react";
-import { useState } from "react";
+import { Github, Linkedin, Mail, CheckCircle2, Globe, Download } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
+import { useI18n } from "./i18n/Context";
+import { useGitHubProjects } from "./hooks/useGitHubProjects";
 import { AnimateOnScroll } from "./components/AnimateOnScroll";
 import { TechCard } from "./components/TechCard";
 import { ProjectCard } from "./components/ProjectCard";
+import { ContactForm } from "./components/ContactForm";
+import { CustomCursor } from "./components/CustomCursor";
+import { ParticlesBackground } from "./components/ParticlesBackground";
 
 export default function Portfolio() {
-  const [copySuccess, setCopySuccess] = useState('');
-
-  const handleCopyEmail = () => {
-    const email = 'victor8augusto010604@hotmail.com';
-    navigator.clipboard.writeText(email).then(() => {
-      setCopySuccess('Email copiado!');
-      setTimeout(() => setCopySuccess(''), 2000);
-    }, (err) => {
-      console.error('Falha ao copiar o email: ', err);
-      setCopySuccess('Falha ao copiar.');
-    });
-  };
+  const { t, lang, toggleLang } = useI18n();
+  const { projects, loading } = useGitHubProjects("VictorMussoline");
+  
+  // Parallax effects
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, 250]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans">
+    <>
+      <CustomCursor />
+      <ParticlesBackground />
 
-      {/* HERO */}
-      <section className="hero">
-        <h1>
-          Olá, eu sou <span>Victor</span> 👋
-        </h1>
-        <p>Desenvolvedor Full Stack focado em criar aplicações web modernas.</p>
+      <div style={{ position: "fixed", top: "1.5rem", right: "2rem", zIndex: 100 }}>
+        <button 
+          onClick={toggleLang}
+          className="btn-outline"
+          style={{ padding: "0.5rem 1rem", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.5rem" }}
+        >
+          <Globe size={16} /> {lang === "pt" ? "EN" : "PT"}
+        </button>
+      </div>
 
-        <div className="buttons">
-          <a className="btn-primary" href="#projects">
-            Ver Projetos
-          </a>
-          <a className="btn-outline" href="#contact">
-            Entrar em Contato
-          </a>
-        </div>
+      {/* HERO SECTION COM PARALLAX */}
+      <section className="hero-wrapper">
+        <motion.div className="hero-content" style={{ y: y1 }}>
+          <motion.h1 
+            className="hero-title"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t.hero.greeting} <span className="highlight">Victor</span>
+          </motion.h1>
+          <motion.p 
+            className="hero-subtitle"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {t.hero.subtitle}
+          </motion.p>
+
+          <motion.div 
+            className="buttons"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <a className="btn-primary" href="#projects">
+              {t.hero.btnProjects}
+            </a>
+            <a className="btn-outline" href="#contact">
+              {t.hero.btnContact}
+            </a>
+            <a className="btn-outline" href="/cv.pdf" download="Victor_Mussoline_Curriculo.pdf" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <Download size={18} /> {t.hero.btnCV}
+            </a>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* SOBRE */}
-      <AnimateOnScroll>
-        <section className="container text-center">
-          <h2 className="text-3xl font-semibold mb-6">Sobre mim</h2>
-          <p className="max-w-3xl mx-auto text-zinc-400 leading-relaxed">
-            Desenvolvedor Focado em Entregar Resultados (React, Tailwind CSS, JS, Firebase, Java, Node.js, APIs REST)
-            <br/><br/>
-            
-            Minha experiência é voltada para a criação de soluções web performáticas e intuitivas, com foco em métricas de negócio e performance técnica.
-            <br/><br/>
-
-            Sou o criador do FinControl, um app de gestão financeira onde React e Tailwind CSS formaram o Front-End de alto desempenho funcionando sem travamentos e com muita fluidez. Utilizei JavaScript Puro para lógica otimizada e Firebase como database escalável.
-            <br/><br/>
-            
-            Destaques de Entrega no FinControl:
-            <br/><br/>
-
-            Performance: Otimização de componentes React que reduziu o tempo de carregamento inicial em até 35%.
-            <br/><br/>
-
-            Engajamento: Design intuitivo com Tailwind CSS que levou a um aumento de 17% no desempenho de uso diário do aplicativo.
-            <br/><br/>
-
-            Escalabilidade: Arquitetura de dados no Firebase que suporta em torno de 100.000 usuários e milhares de registros com estabilidade.
-            <br/><br/>
-
-            Disponível para desafios que exigem proficiência em todo o ciclo de vida do produto e uma mentalidade orientada a resultados.
-          </p>
-        </section>
-      </AnimateOnScroll>
+      <section className="container">
+        <AnimateOnScroll>
+          <h2 className="section-title">{t.about.title}</h2>
+          <div className="card">
+            <div className="about-text">
+              <p>{t.about.p1}</p>
+              <p>{t.about.p2}</p>
+              <p>{t.about.p3}</p>
+            </div>
+          </div>
+        </AnimateOnScroll>
+      </section>
 
       {/* STACK */}
-      <section className="bg-zinc-900">
-        <div className="container">
-          <h2 className="text-3xl font-semibold mb-10 text-center">Stack Tecnológica</h2>
-          
-          <div className="grid">
-            <TechCard
-              title="Front-End"
-              items={["HTML", "CSS", "JavaScript", "React"]}
-            />
-            <TechCard
-              title="Back-End"
-              items={["Java", "Node.js", "Firebase", "APIs REST"]}
-            />
-            <TechCard
-              title="Ferramentas"
-              items={["Git", "GitHub", "Linux", "VS Code"]}
-            />
-          </div>
+      <section className="container" style={{ paddingTop: 0 }}>
+        <AnimateOnScroll>
+          <h2 className="section-title">{t.stack.title}</h2>
+        </AnimateOnScroll>
+        <div className="grid-3">
+          <TechCard
+            title={t.stack.frontend}
+            items={["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind"]}
+          />
+          <TechCard
+            title={t.stack.backend}
+            items={["Java", "Node.js", "Python", "Firebase", "Supabase", "APIs REST"]}
+          />
+          <TechCard
+            title={t.stack.tools}
+            items={["Git", "GitHub", "Linux", "VS Code", "Hardware"]}
+          />
         </div>
       </section>
 
-      {/* PROJETOS */}
-      <AnimateOnScroll>
-        <section id="projects" className="container">
-          <h2 className="text-3xl font-semibold mb-10 text-center">Projetos</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <ProjectCard
-              title="FinControl"
-              description="Controle financeiro com autenticação e dados em tempo real."
-              tech="ReactJS · Firebase · TailwindCSS"
-              github="https://github.com/VictorMussoline/FinControl-Open"
-              demo="https://fincontrolvm.web.app/login"
-            />
-            <br/>
-            <ProjectCard
-              title="Base de Conhecimento de Games Retrô"
-              description="Projeto feito na imersão da Alura usando IA."
-              tech="HTML · Google Gemini · Google API"
-              github="https://github.com/VictorMussoline/imersao-dev-alura-10"
-              demo="https://victormussoline.github.io/imersao-dev-alura-10/"
-            />
-            <br/>
-            <ProjectCard
-              title="Portfólio Fotográfico"
-              description="Em breve."
-              tech="ReactJS · JavaScript Puro · TailwindCSS"
-              github="https://github.com/VictorMussoline"
-            />
-          </div>
-        </section>
-      </AnimateOnScroll>
+
+      {/* PROJETOS (GITHUB API) */}
+      <section id="projects" className="container" style={{ paddingTop: 0 }}>
+        <AnimateOnScroll>
+          <h2 className="section-title">{t.projects.title}</h2>
+        </AnimateOnScroll>
+        <div className="grid-2">
+          {loading ? (
+            <p style={{ textAlign: "center", width: "100%", gridColumn: "1 / -1" }}>Carregando projetos...</p>
+          ) : (
+            projects.map((repo) => (
+              <ProjectCard
+                key={repo.id}
+                title={repo.name}
+                description={repo.description}
+                tech={repo.topics.join(' · ') || "GitHub Repo"}
+                github={repo.html_url}
+                demo={repo.homepage || undefined}
+              />
+            ))
+          )}
+        </div>
+      </section>
 
       {/* DIFERENCIAIS */}
-      <AnimateOnScroll>
-        <section className="bg-zinc-900">
-          <div className="container">
-            <h2 className="text-3xl font-semibold mb-8 text-center">Diferenciais</h2>
-            <ul className="grid md:grid-cols-2 gap-4 text-zinc-400 list-none">
-              <li className="flex items-center gap-2"> Desenvolvimento full-stack com foco em aplicações funcionais, organizadas e de fácil manutenção</li>
-              <li className="flex items-center gap-2"> Experiência prática com projetos reais, utilizando Git, GitHub e versionamento de código</li>
-              <li className="flex items-center gap-2"> Criação de interfaces utilizando JavaScript moderno e React, com componentização e reutilização de código</li>
-              <li className="flex items-center gap-2"> Atenção à experiência do usuário (UX), aplicando boas práticas de usabilidade e feedback visual</li>
-              <li className="flex items-center gap-2"> Capacidade de análise e resolução de problemas, com abordagem orientada a soluções</li>
-              <li className="flex items-center gap-2"> Código estruturado seguindo boas práticas, padrões de projeto e legibilidade</li>
-              <li className="flex items-center gap-2"> Background técnico em suporte e manutenção, trazendo visão prática dos problemas enfrentados por usuários finais</li>
-            </ul>
-          </div>
-        </section>
-      </AnimateOnScroll>
+      <section className="container" style={{ paddingTop: 0 }}>
+        <AnimateOnScroll>
+          <h2 className="section-title">{t.features.title}</h2>
+          <ul className="features-list">
+            {[t.features.f1, t.features.f2, t.features.f3, t.features.f4, t.features.f5].map((feature, i) => (
+              <li key={i} className="feature-item">
+                <CheckCircle2 className="feature-icon" size={24} />
+                <span className="feature-text">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </AnimateOnScroll>
+      </section>
 
       {/* CONTATO */}
-      <AnimateOnScroll>
-        <section id="contact" className="container text-center">
-          <h2 className="text-3xl font-semibold mb-6">Vamos conversar?</h2>
-          <p className="text-zinc-400 mb-10 max-w-2xl mx-auto">
-            Aberto a oportunidades e novos projetos. Sinta-se à vontade para entrar em contato.
+      <section id="contact" className="container" style={{ paddingTop: 0, paddingBottom: "6rem" }}>
+        <AnimateOnScroll>
+          <h2 className="section-title" style={{ marginBottom: "1rem" }}>{t.contact.title}</h2>
+          <p className="section-subtitle" style={{ marginTop: 0, marginBottom: "3rem" }}>
+            {t.contact.subtitle}
           </p>
-          <br/>
-          <div className="socials">
-            <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
-              <Github size={30} />
-            </a>
-            <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-500 transition-colors">
-              <Linkedin size={30} />
-            </a>
-            <button onClick={handleCopyEmail} className="hover:text-indigo-500 transition-colors" aria-label="Copiar email">
-              <Mail size={30} />
-            </button>
+          
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3rem", maxWidth: "600px", margin: "0 auto" }}>
+            <div className="socials" style={{ display: "flex", justifyContent: "center", gap: "1.5rem" }}>
+              <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
+                <Github size={28} />
+              </a>
+              <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
+                <Linkedin size={28} />
+              </a>
+              <a href="mailto:victor8augusto010604@hotmail.com" className="social-btn" aria-label="Email">
+                <Mail size={28} />
+              </a>
+            </div>
+            
+            <div className="card" style={{ width: "100%" }}>
+              <ContactForm />
+            </div>
           </div>
-          {copySuccess && (
-            <p className="mt-4 text-sm text-indigo-400">{copySuccess}</p>
-          )}
-        </section>
-      </AnimateOnScroll>
+        </AnimateOnScroll>
+      </section>
 
-      <footer className="py-6 text-center text-zinc-600 text-sm bg-zinc-950 border-t border-zinc-900">
-        © {new Date().getFullYear()} Victor Mussoline
+      <footer className="footer">
+        © {new Date().getFullYear()} Victor Mussoline. {t.footer.rights}
       </footer>
-    </div>
+    </>
   );
 }

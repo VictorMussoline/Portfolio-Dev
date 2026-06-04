@@ -15,15 +15,15 @@ export function ProjectCard({ title, description, tech, github, demo }: ProjectC
       <div className="card project">
         <div>
           <h3>{title}</h3>
+          <span className="project-tech">{tech}</span>
           <p>{description}</p>
-          <small>{tech}</small>
         </div>
         <div className="project-links">
-          <a href={github} target="_blank" rel="noopener noreferrer">
+          <a href={github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
             <Github size={18} /> GitHub
           </a>
           {demo && (
-            <a href={demo} target="_blank" rel="noopener noreferrer">
+            <a href={demo} target="_blank" rel="noopener noreferrer" className="project-link-btn">
               <ExternalLink size={18} /> Demo
             </a>
           )}
