@@ -1,7 +1,12 @@
 export const pt = {
   hero: {
-    greeting: "Olá, eu sou",
-    subtitle: "Desenvolvedor full-stack e técnico em informática. Apaixonado por tecnologia e inovação ─ vivo para transformar ideias em soluções digitais e interativas.",
+    badge: "Victor Mussoline",
+    titleStart: "Construindo aplicações ",
+    titleHighlight1: "Web & Mobile",
+    titleMid: " escaláveis com ",
+    titleHighlight2: "React Native & Python",
+    titleEnd: ".",
+    subtitle: "Desenvolvedor Full-Stack especializado em desenvolvimento multiplataforma, arquitetura de software e engenharia assistida por IA.",
     btnProjects: "Ver Projetos",
     btnContact: "Entrar em Contato",
     btnCV: "Baixar CV",

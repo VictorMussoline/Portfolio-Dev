@@ -51,13 +51,25 @@ export default function Portfolio() {
       {/* HERO SECTION COM PARALLAX */}
       <section className="hero-wrapper">
         <motion.div className="hero-content" style={{ y: y1 }}>
+          <motion.div 
+            className="hero-badge"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="badge-dot"></span> {t.hero.badge}
+          </motion.div>
           <motion.h1 
             className="hero-title"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {t.hero.greeting} <span className="highlight">Victor</span>
+            {t.hero.titleStart}
+            <span className="highlight">{t.hero.titleHighlight1}</span>
+            {t.hero.titleMid}
+            <span className="highlight">{t.hero.titleHighlight2}</span>
+            {t.hero.titleEnd}
           </motion.h1>
           <motion.p 
             className="hero-subtitle"
