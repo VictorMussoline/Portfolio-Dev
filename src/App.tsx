@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2, Monitor, Bot, Cloud, Laptop, Rocket } from "lucide-react";
+import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, Code2, Sparkles, Monitor, Bot, Cloud, Laptop, Rocket } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
@@ -16,7 +16,6 @@ import Tilt from "react-parallax-tilt";
 import { Navbar } from "./components/Navbar";
 
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
-const ABOUT_ICONS = [GraduationCap, Smartphone, Code2, Server, Sparkles, Layers];
 const BUILD_ICONS = [Smartphone, Monitor, Zap, Bot, Cloud, Layers];
 const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
 
@@ -103,20 +102,26 @@ export default function Portfolio() {
       <section id="about" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.about.title}</h2>
-          <div className="about-grid">
-            {t.about.highlights.map((item: string, i: number) => {
-              const Icon = ABOUT_ICONS[i] || CheckCircle2;
-              return (
-                <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-                  <div className="card about-item-card">
-                    <div className="about-icon-wrapper">
-                      <Icon size={24} className="about-icon" />
-                    </div>
-                    <span className="about-item-text">{item}</span>
-                  </div>
-                </Tilt>
-              );
-            })}
+          <div className="card about-story-card">
+            <div className="about-story-text">
+              <p className="about-paragraph">{t.about.p1}</p>
+              <div className="about-badges">
+                {t.about.tags.map((tag: string, idx: number) => (
+                  <span key={idx} className="about-badge-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+            
+            <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} scale={1.02} transitionSpeed={2000} className="about-photo-tilt">
+              <div className="about-photo-wrapper">
+                <img src="/profile.JPEG" alt="Victor Mussoline - Developer" className="about-photo-img" />
+                <div className="about-photo-overlay"></div>
+                <div className="about-photo-caption">
+                  <span className="photo-caption-name">Victor Mussoline</span>
+                  <span className="photo-caption-role">{t.about.roleBadge}</span>
+                </div>
+              </div>
+            </Tilt>
           </div>
         </AnimateOnScroll>
       </section>

@@ -20,41 +20,36 @@ export const en = {
   },
   about: {
     title: "About Me",
-    highlights: [
-      "Graduating in Information Systems",
-      "Building scalable Web & Mobile applications",
-      "React Native (Web + Mobile)",
-      "Python APIs & Back-End Services",
-      "AI-assisted Software Engineering",
-      "Software Architecture & Data Modeling",
-    ],
+    p1: "Full-Stack Developer pursuing a degree in Information Systems. I combine hands-on IT operations experience (TechForge) with a deep architectural mindset to build scalable, high-performance software integrated with modern cloud infrastructure (Supabase/Vercel) and artificial intelligence.",
+    tags: ["🎓 Information Systems", "⚡ Operations & Architecture", "🤖 AI Engineering"],
+    roleBadge: "Full-Stack Engineer",
   },
   whatIBuild: {
     title: "What I Build",
     items: [
       {
         title: "Mobile Apps",
-        description: "Cross-platform mobile applications for iOS & Android built with React Native."
+        description: "Engineering native and cross-platform applications (iOS/Android) with React Native, focusing on high performance, fluid animations, and complex state management to ensure consistency across all devices."
       },
       {
         title: "Responsive Dashboards",
-        description: "Modern, high-performance web interfaces with fluid layouts and real-time metrics."
+        description: "Development of ultra-fast web interfaces with Vite, React, and Tailwind CSS, prioritizing reusable component architecture, accessibility, and instant page loads."
       },
       {
         title: "REST APIs",
-        description: "Robust, secure backend architectures and API services built with Python & Node.js."
+        description: "Modeling and implementing scalable backend architectures (Python/Node.js), focusing on security (authentication, rate limiting), request efficiency, and database robustness (relational and non-relational)."
       },
       {
         title: "AI-powered Workflows",
-        description: "Intelligent automation and AI-assisted engineering features to optimize product delivery."
+        description: "Strategic integration of AI agents to automate complex business logic, manage data, and accelerate internal workflows, optimizing development cycles and delivery precision."
       },
       {
         title: "Cloud Integrations",
-        description: "Scalable cloud services, database modeling, and serverless deployment with Supabase & Vercel."
+        description: "Deployment of modern cloud infrastructures with Supabase and Vercel, combining relational PostgreSQL modeling, secure authentication, and serverless routines."
       },
       {
         title: "Software Architecture",
-        description: "Clean, maintainable, and scalable systems designed for performance and growth."
+        description: "Design of decoupled and maintainable systems applying software engineering best practices, clean code, and architectural patterns ready for production scale."
       }
     ]
   },

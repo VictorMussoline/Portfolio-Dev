@@ -13,8 +13,14 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined" || typeof navigator === "undefined") return "pt";
+  const userLang = navigator.language || (navigator.languages && navigator.languages[0]) || "";
+  return userLang.toLowerCase().startsWith("en") ? "en" : "pt";
+};
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Language>("pt");
+  const [lang, setLang] = useState<Language>(getInitialLanguage);
 
   const toggleLang = () => {
     setLang((prev) => (prev === "pt" ? "en" : "pt"));

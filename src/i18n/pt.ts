@@ -20,41 +20,36 @@ export const pt = {
   },
   about: {
     title: "Sobre Mim",
-    highlights: [
-      "Graduando em Sistemas de Informação",
-      "Construção de aplicações Web & Mobile escaláveis",
-      "React Native (Web + Mobile)",
-      "APIs em Python & Serviços Back-End",
-      "Desenvolvimento assistido por IA",
-      "Arquitetura de Software & Modelagem de Dados",
-    ],
+    p1: "Desenvolvedor Full-Stack e graduando em Sistemas de Informação. Uno minha experiência em operações de TI (TechForge) a uma visão profunda de arquitetura para construir software escalável, eficiente e integrado com a nuvem (Supabase/Vercel) e inteligência artificial.",
+    tags: ["🎓 Sistemas de Informação", "⚡ Operações & Arquitetura", "🤖 Engenharia com IA"],
+    roleBadge: "Engenheiro Full-Stack",
   },
   whatIBuild: {
     title: "O Que Eu Construo",
     items: [
       {
         title: "Aplicativos Mobile",
-        description: "Aplicativos mobile multiplataforma para iOS & Android desenvolvidos com React Native."
+        description: "Engenharia de aplicações nativas e cross-platform (iOS/Android) com React Native, focando em performance, animações fluidas e gestão de estado complexa para garantir consistência em diferentes dispositivos."
       },
       {
         title: "Dashboards Responsivos",
-        description: "Interfaces web modernas de alta performance com layouts fluidos e métricas em tempo real."
+        description: "Desenvolvimento de interfaces web ultra velozes com Vite, React e Tailwind CSS, priorizando arquitetura de componentes reutilizáveis, acessibilidade e carregamento instantâneo."
       },
       {
         title: "APIs REST",
-        description: "Arquiteturas back-end robustas e serviços de API seguros construídos com Python & Node.js."
+        description: "Modelagem e implementação de arquiteturas back-end escaláveis (Python/Node.js), focando na segurança (autenticação, rate limiting), eficiência nas requisições e robustez do banco de dados (relacional e não-relacional)."
       },
       {
         title: "Workflows com IA",
-        description: "Automação inteligente e engenharia assistida por IA para acelerar entregas."
+        description: "Integração estratégica de agentes de IA para automatizar lógica de negócios complexa, gerenciar dados e acelerar fluxos de trabalho internos, otimizando o tempo de desenvolvimento e a precisão da entrega."
       },
       {
         title: "Integrações em Nuvem",
-        description: "Serviços em nuvem escaláveis, modelagem de banco de dados e deploy serverless com Supabase & Vercel."
+        description: "Implementação de infraestruturas em nuvem modernas com Supabase e Vercel, combinando modelagem relacional em PostgreSQL, autenticação segura e rotinas serverless."
       },
       {
         title: "Arquitetura de Software",
-        description: "Sistemas limpos, sustentáveis e escaláveis projetados para alta performance e crescimento."
+        description: "Design de sistemas desacoplados e sustentáveis, aplicando boas práticas de engenharia de software, código limpo e padrões arquiteturais prontos para escala de produção."
       }
     ]
   },

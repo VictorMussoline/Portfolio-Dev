@@ -228,62 +228,110 @@ section {
   margin: -3rem auto 4rem auto;
 }
 
-/* --- ABOUT SECTION (REVAMPED SCANNABLE GRID) --- */
-.about-grid {
+/* --- ABOUT STORY SECTION --- */
+.about-story-card {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 950px;
-  margin: 0 auto;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: center;
+  padding: 2.5rem 3rem;
 }
 
-.about-item-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 1.5rem 1.8rem;
+@media (max-width: 960px) {
+  .about-story-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.6rem;
+  }
+}
+
+.about-story-text {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1.2rem;
-  box-shadow: var(--glass-shadow);
-  transition: all 0.3s ease;
-  height: 100%;
 }
 
-.about-item-card:hover {
-  transform: translateY(-4px);
-  background: rgba(30, 30, 35, 0.75);
+.about-paragraph {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--text-muted);
 }
 
-.about-icon-wrapper {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: rgba(41, 151, 255, 0.1);
-  border: 1px solid rgba(41, 151, 255, 0.25);
+.about-badges {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.3rem;
 }
 
-.about-item-card:hover .about-icon-wrapper {
-  transform: scale(1.1);
-  background: rgba(41, 151, 255, 0.2);
-}
-
-.about-icon {
-  color: var(--primary);
-}
-
-.about-item-text {
-  font-size: 1.05rem;
+.about-badge-tag {
+  font-size: 0.83rem;
   font-weight: 600;
+  color: var(--primary);
+  background: rgba(41, 151, 255, 0.08);
+  border: 1px solid rgba(41, 151, 255, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+
+.about-photo-tilt {
+  width: 100%;
+}
+
+.about-photo-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  background: var(--bg-main);
+}
+
+.about-photo-img {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.about-photo-wrapper:hover .about-photo-img {
+  transform: scale(1.04);
+}
+
+.about-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(5, 5, 5, 0.85) 100%);
+  pointer-events: none;
+}
+
+.about-photo-caption {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 1.4rem;
+  right: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  z-index: 2;
+}
+
+.photo-caption-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-main);
-  line-height: 1.4;
+}
+
+.photo-caption-role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* --- GLASSMORPHISM CARDS --- */
