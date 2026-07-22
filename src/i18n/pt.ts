@@ -1,4 +1,11 @@
 export const pt = {
+  nav: {
+    about: "Sobre",
+    experience: "Trajetória",
+    projects: "Projetos",
+    contact: "Contato",
+    resume: "Currículo",
+  },
   hero: {
     badge: "Victor Mussoline",
     titleStart: "Construindo aplicações ",
@@ -57,22 +64,26 @@ export const pt = {
       {
         year: "2021",
         role: "Técnico em Informática",
-        description: "Base sólida em hardware, redes, infraestrutura e suporte técnico."
+        description: "Base sólida em hardware, redes, infraestrutura e suporte técnico.",
+        tags: ["Hardware", "Suporte", "Infraestrutura"]
       },
       {
         year: "2025",
         role: "TechWise",
-        description: "Desenvolvimento de software Full-Stack, aplicações cliente e bancos relacionais."
+        description: "Desenvolvimento de software Full-Stack, aplicações cliente e bancos relacionais.",
+        tags: ["Full-Stack", "Apps Web", "Bancos de Dados"]
       },
       {
         year: "2026",
         role: "PsicoSistemoLogia",
-        description: "Desenvolvimento de sistemas especializados, engenharia multiplataforma e integração de IA."
+        description: "Desenvolvimento de sistemas especializados, engenharia multiplataforma e integração de IA.",
+        tags: ["React Native", "Python", "Integração de IA"]
       },
       {
         year: "Presente",
         role: "Próxima Oportunidade 🚀",
-        description: "Pronto para gerar alto impacto na construção de aplicações Web & Mobile no seu time."
+        description: "Pronto para gerar alto impacto na construção de aplicações Web & Mobile no seu time.",
+        tags: ["Web & Mobile", "Sistemas Escaláveis", "Disponibilidade Imediata"]
       }
     ]
   },

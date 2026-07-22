@@ -17,12 +17,12 @@
   100% { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
 }
 
-.btn-primary, .btn-outline, .social-btn, .card, .feature-item, .about-item-card, .build-card {
+.btn-primary, .btn-outline, .social-btn, .card, .feature-item, .about-item-card, .build-card, .timeline-content {
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
 
-.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .feature-item:hover, .about-item-card:hover, .build-card:hover {
+.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .feature-item:hover, .about-item-card:hover, .build-card:hover, .timeline-content:hover {
   animation: razer-rgb 2s linear infinite;
 }
 
@@ -40,6 +40,9 @@
 .build-card:nth-child(3n):hover { animation-delay: -1.7s; }
 .build-card:nth-child(3n+1):hover { animation-delay: -0.3s; }
 .build-card:nth-child(3n+2):hover { animation-delay: -1.0s; }
+
+.timeline-left .timeline-content:hover { animation-delay: -0.5s; }
+.timeline-right .timeline-content:hover { animation-delay: -1.3s; }
 
 .feature-item:nth-child(3n):hover { animation-delay: -1.8s; }
 .feature-item:nth-child(3n+1):hover { animation-delay: -0.4s; }

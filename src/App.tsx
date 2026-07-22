@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2, Monitor, Bot, Cloud } from "lucide-react";
+import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2, Monitor, Bot, Cloud, Laptop, Rocket } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
@@ -13,17 +13,20 @@ import { MagneticElement } from "./components/MagneticElement";
 import { ProjectSkeleton } from "./components/ProjectSkeleton";
 import Tilt from "react-parallax-tilt";
 
+import { Navbar } from "./components/Navbar";
+
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
 const ABOUT_ICONS = [GraduationCap, Smartphone, Code2, Server, Sparkles, Layers];
 const BUILD_ICONS = [Smartphone, Monitor, Zap, Bot, Cloud, Layers];
+const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
 
 /**
  * Main Application Component
- * Integrates all sections (Hero, About, Stack, Projects, Contact)
+ * Integrates all sections (Navbar, Hero, About, Stack, Projects, Contact)
  * and manages global states like i18n, GitHub projects fetch, and parallax animations.
  */
 export default function Portfolio() {
-  const { t, lang, toggleLang } = useI18n();
+  const { t } = useI18n();
   // Fetch repositories from GitHub API dynamically
   const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || "VictorMussoline";
   const { projects, loading } = useGitHubProjects(githubUsername);
@@ -36,21 +39,10 @@ export default function Portfolio() {
     <>
       <CustomCursor />
       <ParticlesBackground />
-
-      <div style={{ position: "fixed", top: "1.5rem", right: "2rem", zIndex: 100 }}>
-        <MagneticElement>
-          <button 
-            onClick={toggleLang}
-            className="btn-outline"
-            style={{ padding: "0.5rem 1rem", fontSize: "0.9rem", display: "flex", alignItems: "center", gap: "0.5rem" }}
-          >
-            <Globe size={16} /> {lang === "pt" ? "EN" : "PT"}
-          </button>
-        </MagneticElement>
-      </div>
+      <Navbar />
 
       {/* HERO SECTION COM PARALLAX */}
-      <section className="hero-wrapper">
+      <section id="hero" className="hero-wrapper">
         <motion.div className="hero-content" style={{ y: y1 }}>
           <motion.div 
             className="hero-badge"
@@ -108,7 +100,7 @@ export default function Portfolio() {
       </section>
 
       {/* SOBRE */}
-      <section className="container">
+      <section id="about" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.about.title}</h2>
           <div className="about-grid">
@@ -130,7 +122,7 @@ export default function Portfolio() {
       </section>
 
       {/* WHAT I BUILD */}
-      <section className="container" style={{ paddingTop: 0 }}>
+      <section id="what-i-build" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.whatIBuild.title}</h2>
         </AnimateOnScroll>
@@ -153,21 +145,34 @@ export default function Portfolio() {
       </section>
 
       {/* TIMELINE / TRAJETÓRIA */}
-      <section className="container" style={{ paddingTop: 0 }}>
+      <section id="experience" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.timeline.title}</h2>
           <div className="timeline-wrapper">
             <div className="timeline-line"></div>
             {t.timeline.items.map((item: any, i: number) => {
               const isLeft = i % 2 === 0;
+              const Icon = TIMELINE_ICONS[i] || Rocket;
               return (
                 <div key={i} className={`timeline-item ${isLeft ? "timeline-left" : "timeline-right"}`}>
                   <div className="timeline-node"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-year">{item.year}</span>
-                    <h3 className="timeline-role">{item.role}</h3>
-                    <p className="timeline-desc">{item.description}</p>
-                  </div>
+                  <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000} className="timeline-tilt">
+                    <div className="card timeline-content">
+                      <div className="timeline-header">
+                        <span className="timeline-year">{item.year}</span>
+                        <div className="timeline-icon-box">
+                          <Icon size={18} className="timeline-icon" />
+                        </div>
+                      </div>
+                      <h3 className="timeline-role">{item.role}</h3>
+                      <p className="timeline-desc">{item.description}</p>
+                      <div className="timeline-tags">
+                        {item.tags?.map((tag: string, idx: number) => (
+                          <span key={idx} className="timeline-tag">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </Tilt>
                 </div>
               );
             })}
@@ -175,9 +180,8 @@ export default function Portfolio() {
         </AnimateOnScroll>
       </section>
 
-
       {/* PROJETOS (GITHUB API) */}
-      <section id="projects" className="container" style={{ paddingTop: 0 }}>
+      <section id="projects" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.projects.title}</h2>
         </AnimateOnScroll>
@@ -205,7 +209,7 @@ export default function Portfolio() {
       </section>
 
       {/* DIFERENCIAIS */}
-      <section className="container" style={{ paddingTop: 0 }}>
+      <section className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.features.title}</h2>
           <ul className="features-list">
@@ -228,7 +232,7 @@ export default function Portfolio() {
       </section>
 
       {/* CONTATO */}
-      <section id="contact" className="container" style={{ paddingTop: 0, paddingBottom: "6rem" }}>
+      <section id="contact" className="container" style={{ paddingBottom: "8rem" }}>
         <AnimateOnScroll>
           <h2 className="section-title" style={{ marginBottom: "1rem" }}>{t.contact.title}</h2>
           <p className="section-subtitle" style={{ marginTop: 0, marginBottom: "3rem" }}>

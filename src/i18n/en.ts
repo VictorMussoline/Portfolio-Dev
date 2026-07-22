@@ -1,4 +1,11 @@
 export const en = {
+  nav: {
+    about: "About",
+    experience: "Experience",
+    projects: "Projects",
+    contact: "Contact",
+    resume: "Resume",
+  },
   hero: {
     badge: "Victor Mussoline",
     titleStart: "Building scalable ",
@@ -57,22 +64,26 @@ export const en = {
       {
         year: "2021",
         role: "Computer Technician",
-        description: "Solid foundation in hardware, networking, infrastructure, and technical support."
+        description: "Solid foundation in hardware, networking, infrastructure, and technical support.",
+        tags: ["Hardware", "Support", "Infrastructure"]
       },
       {
         year: "2025",
         role: "TechWise",
-        description: "Full-Stack software development, client applications, and relational database architectures."
+        description: "Full-Stack software development, client applications, and relational database architectures.",
+        tags: ["Full-Stack", "Web Apps", "Databases"]
       },
       {
         year: "2026",
         role: "PsicoSistemoLogia",
-        description: "Specialized system development, cross-platform engineering, and AI integration."
+        description: "Specialized system development, cross-platform engineering, and AI integration.",
+        tags: ["React Native", "Python", "AI Integration"]
       },
       {
         year: "Present",
         role: "Next Opportunity 🚀",
-        description: "Ready to deliver high-impact scalable Web & Mobile applications in your team."
+        description: "Ready to deliver high-impact scalable Web & Mobile applications in your team.",
+        tags: ["Web & Mobile", "Scalable Systems", "Immediate Availability"]
       }
     ]
   },
