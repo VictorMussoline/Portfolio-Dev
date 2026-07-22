@@ -1,11 +1,10 @@
-import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2 } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2, Monitor, Bot, Cloud } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
 import { useI18n } from "./i18n/Context";
 import { useGitHubProjects } from "./hooks/useGitHubProjects";
 import { AnimateOnScroll } from "./components/AnimateOnScroll";
-import { TechCard } from "./components/TechCard";
 import { ProjectCard } from "./components/ProjectCard";
 import { ContactForm } from "./components/ContactForm";
 import { CustomCursor } from "./components/CustomCursor";
@@ -16,6 +15,7 @@ import Tilt from "react-parallax-tilt";
 
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
 const ABOUT_ICONS = [GraduationCap, Smartphone, Code2, Server, Sparkles, Layers];
+const BUILD_ICONS = [Smartphone, Monitor, Zap, Bot, Cloud, Layers];
 
 /**
  * Main Application Component
@@ -129,31 +129,50 @@ export default function Portfolio() {
         </AnimateOnScroll>
       </section>
 
-      {/* STACK */}
+      {/* WHAT I BUILD */}
       <section className="container" style={{ paddingTop: 0 }}>
         <AnimateOnScroll>
-          <h2 className="section-title">{t.stack.title}</h2>
+          <h2 className="section-title">{t.whatIBuild.title}</h2>
         </AnimateOnScroll>
         <div className="grid-3">
-          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-            <TechCard
-              title={t.stack.frontend}
-              items={["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind"]}
-            />
-          </Tilt>
-          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-            <TechCard
-              title={t.stack.backend}
-              items={["Java", "Node.js", "Python", "Firebase", "Supabase", "APIs REST"]}
-            />
-          </Tilt>
-          <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-            <TechCard
-              title={t.stack.tools}
-              items={["Git", "GitHub", "Linux", "VS Code", "Hardware"]}
-            />
-          </Tilt>
+          {t.whatIBuild.items.map((item: any, i: number) => {
+            const Icon = BUILD_ICONS[i] || Smartphone;
+            return (
+              <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+                <div className="card build-card">
+                  <div className="build-icon-wrapper">
+                    <Icon size={28} className="build-icon" />
+                  </div>
+                  <h3 className="build-card-title">{item.title}</h3>
+                  <p className="build-card-desc">{item.description}</p>
+                </div>
+              </Tilt>
+            );
+          })}
         </div>
+      </section>
+
+      {/* TIMELINE / TRAJETÓRIA */}
+      <section className="container" style={{ paddingTop: 0 }}>
+        <AnimateOnScroll>
+          <h2 className="section-title">{t.timeline.title}</h2>
+          <div className="timeline-wrapper">
+            <div className="timeline-line"></div>
+            {t.timeline.items.map((item: any, i: number) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <div key={i} className={`timeline-item ${isLeft ? "timeline-left" : "timeline-right"}`}>
+                  <div className="timeline-node"></div>
+                  <div className="timeline-content">
+                    <span className="timeline-year">{item.year}</span>
+                    <h3 className="timeline-role">{item.role}</h3>
+                    <p className="timeline-desc">{item.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </AnimateOnScroll>
       </section>
 
 

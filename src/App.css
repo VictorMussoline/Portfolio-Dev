@@ -335,44 +335,183 @@ section {
   }
 }
 
-/* --- TECH CARDS ESPECÍFICO --- */
-.tech-card-title {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.tech-items-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.tech-item {
+/* --- WHAT I BUILD CARDS ESPECÍFICO --- */
+.build-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.8rem;
-  width: 70px;
+  height: 100%;
+  padding: 2rem;
 }
 
-.tech-icon {
-  width: 48px;
-  height: 48px;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.build-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(41, 151, 255, 0.1);
+  border: 1px solid rgba(41, 151, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.tech-item:hover .tech-icon {
-  transform: scale(1.15) translateY(-5px);
+.build-card:hover .build-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(41, 151, 255, 0.2);
 }
 
-.tech-item span {
-  font-size: 0.8rem;
-  font-weight: 500;
+.build-icon {
+  color: var(--primary);
+}
+
+.build-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.build-card-desc {
+  font-size: 0.95rem;
   color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* --- TIMELINE SECTION --- */
+.timeline-wrapper {
+  position: relative;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(41, 151, 255, 0.8) 0%, rgba(217, 70, 239, 0.8) 75%, rgba(41, 151, 255, 0.2) 100%);
+  box-shadow: 0 0 12px rgba(41, 151, 255, 0.5);
+}
+
+@media (min-width: 768px) {
+  .timeline-line {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: 24px;
+  top: 1.2rem;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg-main);
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 15px var(--primary);
+  z-index: 3;
+}
+
+.timeline-item:last-child .timeline-node {
+  border-color: #d946ef;
+  box-shadow: 0 0 15px #d946ef;
+  animation: pulse-node 2s infinite ease-in-out;
+}
+
+@keyframes pulse-node {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.35); }
+}
+
+@media (min-width: 768px) {
+  .timeline-node {
+    left: 50%;
+  }
+}
+
+.timeline-content {
+  margin-left: 60px;
+  padding: 1.4rem 1.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  border-color: var(--border-light);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: var(--glow-shadow);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .timeline-content {
+    width: 44%;
+  }
+  
+  .timeline-left .timeline-content {
+    margin-right: auto;
+    margin-left: 0;
+    text-align: right;
+  }
+  
+  .timeline-right .timeline-content {
+    margin-left: auto;
+    margin-right: 0;
+    text-align: left;
+  }
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(41, 151, 255, 0.1);
+}
+
+.timeline-item:last-child .timeline-year {
+  color: #d946ef;
+  background: rgba(217, 70, 239, 0.1);
+}
+
+.timeline-role {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* --- PROJECT CARDS ESPECÍFICO --- */

@@ -22,11 +22,59 @@ export const en = {
       "Software Architecture & Data Modeling",
     ],
   },
-  stack: {
-    title: "Tech Stack",
-    frontend: "Front-End",
-    backend: "Back-End",
-    tools: "Tools & Others",
+  whatIBuild: {
+    title: "What I Build",
+    items: [
+      {
+        title: "Mobile Apps",
+        description: "Cross-platform mobile applications for iOS & Android built with React Native."
+      },
+      {
+        title: "Responsive Dashboards",
+        description: "Modern, high-performance web interfaces with fluid layouts and real-time metrics."
+      },
+      {
+        title: "REST APIs",
+        description: "Robust, secure backend architectures and API services built with Python & Node.js."
+      },
+      {
+        title: "AI-powered Workflows",
+        description: "Intelligent automation and AI-assisted engineering features to optimize product delivery."
+      },
+      {
+        title: "Cloud Integrations",
+        description: "Scalable cloud services, database modeling, and serverless deployment with Supabase & Vercel."
+      },
+      {
+        title: "Software Architecture",
+        description: "Clean, maintainable, and scalable systems designed for performance and growth."
+      }
+    ]
+  },
+  timeline: {
+    title: "Career Journey",
+    items: [
+      {
+        year: "2021",
+        role: "Computer Technician",
+        description: "Solid foundation in hardware, networking, infrastructure, and technical support."
+      },
+      {
+        year: "2025",
+        role: "TechWise",
+        description: "Full-Stack software development, client applications, and relational database architectures."
+      },
+      {
+        year: "2026",
+        role: "PsicoSistemoLogia",
+        description: "Specialized system development, cross-platform engineering, and AI integration."
+      },
+      {
+        year: "Present",
+        role: "Next Opportunity 🚀",
+        description: "Ready to deliver high-impact scalable Web & Mobile applications in your team."
+      }
+    ]
   },
   github: {
     title: "GitHub Stats",

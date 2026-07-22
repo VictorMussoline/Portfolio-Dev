@@ -22,11 +22,59 @@ export const pt = {
       "Arquitetura de Software & Modelagem de Dados",
     ],
   },
-  stack: {
-    title: "Stack Tecnológica",
-    frontend: "Front-End",
-    backend: "Back-End",
-    tools: "Outros & Ferramentas",
+  whatIBuild: {
+    title: "O Que Eu Construo",
+    items: [
+      {
+        title: "Aplicativos Mobile",
+        description: "Aplicativos mobile multiplataforma para iOS & Android desenvolvidos com React Native."
+      },
+      {
+        title: "Dashboards Responsivos",
+        description: "Interfaces web modernas de alta performance com layouts fluidos e métricas em tempo real."
+      },
+      {
+        title: "APIs REST",
+        description: "Arquiteturas back-end robustas e serviços de API seguros construídos com Python & Node.js."
+      },
+      {
+        title: "Workflows com IA",
+        description: "Automação inteligente e engenharia assistida por IA para acelerar entregas."
+      },
+      {
+        title: "Integrações em Nuvem",
+        description: "Serviços em nuvem escaláveis, modelagem de banco de dados e deploy serverless com Supabase & Vercel."
+      },
+      {
+        title: "Arquitetura de Software",
+        description: "Sistemas limpos, sustentáveis e escaláveis projetados para alta performance e crescimento."
+      }
+    ]
+  },
+  timeline: {
+    title: "Trajetória",
+    items: [
+      {
+        year: "2021",
+        role: "Técnico em Informática",
+        description: "Base sólida em hardware, redes, infraestrutura e suporte técnico."
+      },
+      {
+        year: "2025",
+        role: "TechWise",
+        description: "Desenvolvimento de software Full-Stack, aplicações cliente e bancos relacionais."
+      },
+      {
+        year: "2026",
+        role: "PsicoSistemoLogia",
+        description: "Desenvolvimento de sistemas especializados, engenharia multiplataforma e integração de IA."
+      },
+      {
+        year: "Presente",
+        role: "Próxima Oportunidade 🚀",
+        description: "Pronto para gerar alto impacto na construção de aplicações Web & Mobile no seu time."
+      }
+    ]
   },
   github: {
     title: "Estatísticas do GitHub",
