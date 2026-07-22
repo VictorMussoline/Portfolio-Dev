@@ -12,9 +12,15 @@ export const pt = {
     btnCV: "Baixar CV",
   },
   about: {
-    title: "Sobre mim",
-    p1: "Sou desenvolvedor Full-Stack focado em transformar ideias em soluções digitais de alto impacto. Graduando em Sistemas de Informação, uno uma base sólida em arquitetura e métricas de negócio para criar aplicações web e mobile que alinham performance técnica à experiência do usuário.",
-    p2: "Sou o criador do FinControl, uma plataforma de gestão financeira de alto desempenho. Recentemente, liderei a refatoração do ecossistema do app, evoluindo a arquitetura para uma stack moderna com TypeScript, Vite, Tailwind CSS, Supabase e deploy na Vercel. Minha experiência engloba todo o ciclo de vida do produto — desde a modelagem de dados relacionais até interfaces fluidas e responsivas.",
+    title: "Sobre Mim",
+    highlights: [
+      "Graduando em Sistemas de Informação",
+      "Construção de aplicações Web & Mobile escaláveis",
+      "React Native (Web + Mobile)",
+      "APIs em Python & Serviços Back-End",
+      "Desenvolvimento assistido por IA",
+      "Arquitetura de Software & Modelagem de Dados",
+    ],
   },
   stack: {
     title: "Stack Tecnológica",

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, GraduationCap, Code2, Server, Sparkles, CheckCircle2 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
@@ -15,6 +15,7 @@ import { ProjectSkeleton } from "./components/ProjectSkeleton";
 import Tilt from "react-parallax-tilt";
 
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
+const ABOUT_ICONS = [GraduationCap, Smartphone, Code2, Server, Sparkles, Layers];
 
 /**
  * Main Application Component
@@ -110,11 +111,20 @@ export default function Portfolio() {
       <section className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.about.title}</h2>
-          <div className="card">
-            <div className="about-text">
-              <p>{t.about.p1}</p>
-              <p>{t.about.p2}</p>
-            </div>
+          <div className="about-grid">
+            {t.about.highlights.map((item: string, i: number) => {
+              const Icon = ABOUT_ICONS[i] || CheckCircle2;
+              return (
+                <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+                  <div className="card about-item-card">
+                    <div className="about-icon-wrapper">
+                      <Icon size={24} className="about-icon" />
+                    </div>
+                    <span className="about-item-text">{item}</span>
+                  </div>
+                </Tilt>
+              );
+            })}
           </div>
         </AnimateOnScroll>
       </section>

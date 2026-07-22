@@ -17,12 +17,12 @@
   100% { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
 }
 
-.btn-primary, .btn-outline, .social-btn, .card, .feature-item {
+.btn-primary, .btn-outline, .social-btn, .card, .feature-item, .about-item-card {
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
 
-.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .feature-item:hover {
+.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .feature-item:hover, .about-item-card:hover {
   animation: razer-rgb 2s linear infinite;
 }
 
@@ -33,6 +33,9 @@
 
 .card:nth-child(odd):hover { animation-delay: -0.7s; }
 .card:nth-child(even):hover { animation-delay: -1.3s; }
+
+.about-item-card:nth-child(odd):hover { animation-delay: -0.6s; }
+.about-item-card:nth-child(even):hover { animation-delay: -1.4s; }
 
 .feature-item:nth-child(3n):hover { animation-delay: -1.8s; }
 .feature-item:nth-child(3n+1):hover { animation-delay: -0.4s; }
