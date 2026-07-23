@@ -6,7 +6,6 @@ import { useI18n } from "./i18n/Context";
 import { useGitHubProjects } from "./hooks/useGitHubProjects";
 import { AnimateOnScroll } from "./components/AnimateOnScroll";
 import { ProjectCard } from "./components/ProjectCard";
-import { ContactForm } from "./components/ContactForm";
 import { CustomCursor } from "./components/CustomCursor";
 import { ParticlesBackground } from "./components/ParticlesBackground";
 import { MagneticElement } from "./components/MagneticElement";
@@ -135,15 +134,17 @@ export default function Portfolio() {
           {t.whatIBuild.items.map((item: any, i: number) => {
             const Icon = BUILD_ICONS[i] || Smartphone;
             return (
-              <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
-                <div className="card build-card">
-                  <div className="build-icon-wrapper">
-                    <Icon size={28} className="build-icon" />
+              <AnimateOnScroll key={i} delay={i * 0.08} scale={0.92}>
+                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+                  <div className="card build-card">
+                    <div className="build-icon-wrapper">
+                      <Icon size={28} className="build-icon" />
+                    </div>
+                    <h3 className="build-card-title">{item.title}</h3>
+                    <p className="build-card-desc">{item.description}</p>
                   </div>
-                  <h3 className="build-card-title">{item.title}</h3>
-                  <p className="build-card-desc">{item.description}</p>
-                </div>
-              </Tilt>
+                </Tilt>
+              </AnimateOnScroll>
             );
           })}
         </div>
@@ -153,13 +154,15 @@ export default function Portfolio() {
       <section id="experience" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.timeline.title}</h2>
-          <div className="timeline-wrapper">
-            <div className="timeline-line"></div>
-            {t.timeline.items.map((item: any, i: number) => {
-              const isLeft = i % 2 === 0;
-              const Icon = TIMELINE_ICONS[i] || Rocket;
-              return (
-                <div key={i} className={`timeline-item ${isLeft ? "timeline-left" : "timeline-right"}`}>
+        </AnimateOnScroll>
+        <div className="timeline-wrapper">
+          <div className="timeline-line"></div>
+          {t.timeline.items.map((item: any, i: number) => {
+            const isLeft = i % 2 === 0;
+            const Icon = TIMELINE_ICONS[i] || Rocket;
+            return (
+              <AnimateOnScroll key={i} delay={i * 0.12} direction={isLeft ? "right" : "left"} scale={0.94}>
+                <div className={`timeline-item ${isLeft ? "timeline-left" : "timeline-right"}`}>
                   <div className="timeline-node"></div>
                   <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000} className="timeline-tilt">
                     <div className="card timeline-content">
@@ -179,10 +182,10 @@ export default function Portfolio() {
                     </div>
                   </Tilt>
                 </div>
-              );
-            })}
-          </div>
-        </AnimateOnScroll>
+              </AnimateOnScroll>
+            );
+          })}
+        </div>
       </section>
 
       {/* PROJETOS (GITHUB API) */}
@@ -199,15 +202,16 @@ export default function Portfolio() {
               <ProjectSkeleton />
             </>
           ) : (
-            projects.map((repo) => (
-              <ProjectCard
-                key={repo.id}
-                title={repo.name}
-                description={repo.description}
-                tech={repo.topics.join(' · ') || "GitHub Repo"}
-                github={repo.html_url}
-                demo={repo.homepage || undefined}
-              />
+            projects.map((repo, i) => (
+              <AnimateOnScroll key={repo.id} delay={i * 0.1} scale={0.92}>
+                <ProjectCard
+                  title={repo.name}
+                  description={repo.description}
+                  tech={repo.topics.join(' · ') || "GitHub Repo"}
+                  github={repo.html_url}
+                  demo={repo.homepage || undefined}
+                />
+              </AnimateOnScroll>
             ))
           )}
         </div>
@@ -217,11 +221,13 @@ export default function Portfolio() {
       <section className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.features.title}</h2>
-          <ul className="features-list">
-            {t.features.list.map((feature: any, i: number) => {
-              const Icon = FEATURE_ICONS[i] || Layers;
-              return (
-                <Tilt key={i} tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
+        </AnimateOnScroll>
+        <ul className="features-list">
+          {t.features.list.map((feature: any, i: number) => {
+            const Icon = FEATURE_ICONS[i] || Layers;
+            return (
+              <AnimateOnScroll key={i} delay={i * 0.08} scale={0.92}>
+                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02} transitionSpeed={2000}>
                   <li className="feature-item" style={{ flexDirection: "column", gap: "1rem", height: "100%" }}>
                     <Icon className="feature-icon" size={36} />
                     <div>
@@ -230,10 +236,10 @@ export default function Portfolio() {
                     </div>
                   </li>
                 </Tilt>
-              );
-            })}
-          </ul>
-        </AnimateOnScroll>
+              </AnimateOnScroll>
+            );
+          })}
+        </ul>
       </section>
 
       {/* CONTATO */}
@@ -244,28 +250,22 @@ export default function Portfolio() {
             {t.contact.subtitle}
           </p>
           
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "3rem", maxWidth: "600px", margin: "0 auto" }}>
-            <div className="socials" style={{ display: "flex", justifyContent: "center", gap: "1.5rem" }}>
-              <MagneticElement>
-                <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
-                  <Github size={28} />
-                </a>
-              </MagneticElement>
-              <MagneticElement>
-                <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
-                  <Linkedin size={28} />
-                </a>
-              </MagneticElement>
-              <MagneticElement>
-                <a href="mailto:victor8augusto010604@hotmail.com" className="social-btn" aria-label="Email">
-                  <Mail size={28} />
-                </a>
-              </MagneticElement>
-            </div>
-            
-            <div className="card" style={{ width: "100%" }}>
-              <ContactForm />
-            </div>
+          <div className="socials" style={{ display: "flex", justifyContent: "center", gap: "2rem" }}>
+            <MagneticElement>
+              <a href="https://github.com/VictorMussoline" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
+                <Github size={28} />
+              </a>
+            </MagneticElement>
+            <MagneticElement>
+              <a href="https://www.linkedin.com/in/victormussoline/" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="LinkedIn">
+                <Linkedin size={28} />
+              </a>
+            </MagneticElement>
+            <MagneticElement>
+              <a href="mailto:victor8augusto010604@hotmail.com" className="social-btn" aria-label="Email">
+                <Mail size={28} />
+              </a>
+            </MagneticElement>
           </div>
         </AnimateOnScroll>
       </section>
