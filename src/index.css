@@ -5,6 +5,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 /* --- RAZER RGB HOVER EFFECT --- */
 @keyframes razer-rgb {
   0%   { border-color: #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
@@ -22,7 +40,7 @@
   border: 1px solid transparent;
 }
 
-.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .feature-item:hover, .about-item-card:hover, .build-card:hover, .timeline-content:hover {
+.btn-primary:hover, .btn-outline:hover, .social-btn:hover, .card:hover, .card.is-hovered, .feature-item:hover, .about-item-card:hover, .build-card:hover, .timeline-content:hover {
   animation: razer-rgb 2s linear infinite;
 }
 
@@ -47,7 +65,3 @@
 .feature-item:nth-child(3n):hover { animation-delay: -1.8s; }
 .feature-item:nth-child(3n+1):hover { animation-delay: -0.4s; }
 .feature-item:nth-child(3n+2):hover { animation-delay: -1.1s; }
-
-.socials .MagneticElement:nth-child(1) .social-btn:hover { animation-delay: -0.3s; }
-.socials .MagneticElement:nth-child(2) .social-btn:hover { animation-delay: -0.9s; }
-.socials .MagneticElement:nth-child(3) .social-btn:hover { animation-delay: -1.5s; }

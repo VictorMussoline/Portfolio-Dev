@@ -1,19 +1,24 @@
 .project-card-tilt {
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden !important;
   background: var(--bg-card);
   border: 1px solid var(--border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--glass-shadow);
   transition: transform 0.3s ease, background 0.3s ease;
+  box-sizing: border-box !important;
 }
 
 .project-card:hover {
@@ -244,4 +249,24 @@
 .project-link-demo:hover {
   background: var(--primary);
   border-color: var(--primary);
+}
+
+@media (max-width: 600px) {
+  .project-img-container {
+    height: 185px;
+  }
+  .project-content {
+    padding: 1.2rem;
+  }
+  .browser-url {
+    max-width: 48%;
+    font-size: 0.68rem;
+  }
+  .project-links {
+    flex-wrap: wrap;
+  }
+  .project-link-btn {
+    flex: 1;
+    justify-content: center;
+  }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Github, ExternalLink, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
@@ -30,12 +30,47 @@ export function ProjectCard({
   const techList = Array.isArray(tech) ? tech : tech.split(" · ");
   const imageList = images && images.length > 0 ? images : image ? [image] : [];
 
+  const cardRef = useRef<HTMLDivElement>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobileCenter, setIsMobileCenter] = useState(false);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
 
-  // Auto-play slideshow every 0.7s when hovered
+  // Mobile Center Viewport Intersection Detection
   useEffect(() => {
-    if (!isHovered || imageList.length <= 1) {
+    const checkCenter = () => {
+      if (!cardRef.current) return;
+      const isMobile = window.innerWidth <= 900;
+      setIsMobileScreen(isMobile);
+
+      const rect = cardRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const cardCenter = rect.top + rect.height / 2;
+      const targetCenterMin = viewportHeight * 0.28;
+      const targetCenterMax = viewportHeight * 0.72;
+
+      if (isMobile && cardCenter >= targetCenterMin && cardCenter <= targetCenterMax) {
+        setIsMobileCenter(true);
+      } else {
+        setIsMobileCenter(false);
+      }
+    };
+
+    window.addEventListener("scroll", checkCenter, { passive: true });
+    window.addEventListener("resize", checkCenter, { passive: true });
+    checkCenter();
+
+    return () => {
+      window.removeEventListener("scroll", checkCenter);
+      window.removeEventListener("resize", checkCenter);
+    };
+  }, []);
+
+  const activeHover = isHovered || isMobileCenter;
+
+  // Auto-play slideshow every 0.7s when hovered OR centered on mobile
+  useEffect(() => {
+    if (!activeHover || imageList.length <= 1) {
       setCurrentIdx(0);
       return;
     }
@@ -45,12 +80,13 @@ export function ProjectCard({
     }, 1100);
 
     return () => clearInterval(interval);
-  }, [isHovered, imageList.length]);
+  }, [activeHover, imageList.length]);
 
   return (
-    <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.015} transitionSpeed={2000} className="project-card-tilt">
+    <Tilt tiltEnable={!isMobileScreen} tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.015} transitionSpeed={2000} className="project-card-tilt">
       <div
-        className={`card project-card ${featured ? "project-card-featured" : ""}`}
+        ref={cardRef}
+        className={`card project-card ${featured ? "project-card-featured" : ""} ${activeHover ? "is-hovered" : ""}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -95,7 +131,7 @@ export function ProjectCard({
               </span>
             )}
 
-            {/* Hover Auto-play indicator dots */}
+            {/* Hover / Mobile Center Auto-play indicator dots */}
             {imageList.length > 1 && (
               <div className="carousel-hover-indicator">
                 {imageList.map((_, i) => (
