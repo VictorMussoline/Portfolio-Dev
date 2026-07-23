@@ -3,13 +3,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
 import { useI18n } from "./i18n/Context";
-import { useGitHubProjects } from "./hooks/useGitHubProjects";
 import { AnimateOnScroll } from "./components/AnimateOnScroll";
 import { ProjectCard } from "./components/ProjectCard";
 import { CustomCursor } from "./components/CustomCursor";
 import { ParticlesBackground } from "./components/ParticlesBackground";
 import { MagneticElement } from "./components/MagneticElement";
-import { ProjectSkeleton } from "./components/ProjectSkeleton";
 import Tilt from "react-parallax-tilt";
 
 import { Navbar } from "./components/Navbar";
@@ -25,10 +23,7 @@ const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
  */
 export default function Portfolio() {
   const { t } = useI18n();
-  // Fetch repositories from GitHub API dynamically
-  const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || "VictorMussoline";
-  const { projects, loading } = useGitHubProjects(githubUsername);
-  
+
   // Parallax effects
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 250]);
@@ -188,32 +183,26 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* PROJETOS (GITHUB API) */}
+      {/* PROJETOS (MOCKED SHOWCASE WITH CAROUSELS) */}
       <section id="projects" className="container">
         <AnimateOnScroll>
           <h2 className="section-title">{t.projects.title}</h2>
         </AnimateOnScroll>
         <div className="grid-2">
-          {loading ? (
-            <>
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-              <ProjectSkeleton />
-            </>
-          ) : (
-            projects.map((repo, i) => (
-              <AnimateOnScroll key={repo.id} delay={i * 0.1} scale={0.92}>
-                <ProjectCard
-                  title={repo.name}
-                  description={repo.description}
-                  tech={repo.topics.join(' · ') || "GitHub Repo"}
-                  github={repo.html_url}
-                  demo={repo.homepage || undefined}
-                />
-              </AnimateOnScroll>
-            ))
-          )}
+          {t.projects.featured?.map((item: any, i: number) => (
+            <AnimateOnScroll key={item.id} delay={i * 0.1} scale={0.92}>
+              <ProjectCard
+                title={item.name}
+                description={item.description}
+                tech={item.topics}
+                github={item.html_url}
+                demo={item.homepage}
+                images={item.images}
+                featured={item.featured}
+                featuredLabel={t.projects.featuredBadge}
+              />
+            </AnimateOnScroll>
+          ))}
         </div>
       </section>
 

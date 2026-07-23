@@ -86,7 +86,66 @@ export const en = {
     title: "GitHub Stats",
   },
   projects: {
-    title: "Projects",
+    title: "Featured Projects",
+    featuredBadge: "Featured",
+    featured: [
+      {
+        id: "fincontrol",
+        name: "FinControl",
+        description: "Full financial management dashboard featuring real-time analytics charts, income/expense tracking, cash flow, and visual reports.",
+        topics: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Supabase"],
+        html_url: "https://github.com/VictorMussoline/FinControl",
+        homepage: "https://fincontrol-open-app.vercel.app",
+        images: [
+          "/projects/fincontrol-1.png",
+          "/projects/fincontrol-2.png",
+          "/projects/fincontrol-3.png"
+        ],
+        featured: true
+      },
+      {
+        id: "techforge",
+        name: "TechForge",
+        description: "Institutional website & IT services showcase for TechForge, built with futuristic UI design, live monitoring highlights, and cloud solutions.",
+        topics: ["React", "TypeScript", "Vite", "Framer Motion", "CSS3"],
+        html_url: "https://github.com/VictorMussoline/TechForge-Site",
+        homepage: "https://site-techforge.vercel.app",
+        images: [
+          "/projects/techforge-1.png",
+          "/projects/techforge-2.png",
+          "/projects/techforge-3.png"
+        ],
+        featured: true
+      },
+      {
+        id: "portfolio-dev",
+        name: "My Portfolio",
+        description: "High-performance Portfolio Web application with glassmorphic design, full internationalization (i18n), Apple-style animations, and PWA support.",
+        topics: ["React", "TypeScript", "Vite", "Framer Motion", "PWA"],
+        html_url: "https://github.com/VictorMussoline/Portfolio-Dev",
+        homepage: "https://victormussoline.vercel.app",
+        images: [
+          "/projects/portfolio-1.png",
+          "/projects/portfolio-2.png",
+          "/projects/portfolio-3.png"
+        ],
+        featured: true
+      },
+      {
+        id: "imersao-dev-alura",
+        name: "Bootcamp Dev Alura IA",
+        description: "Interactive web projects built during Alura's Dev Immersion, featuring mini-games, calculators, and programming logic tools.",
+        topics: ["JavaScript", "HTML5", "CSS3", "Logic Programming"],
+        html_url: "https://github.com/VictorMussoline/Imersao-Dev-Alura",
+        homepage: "https://victormussoline.github.io/imersao-dev-alura-10/",
+        images: [
+          "/projects/alura-1.png",
+          "/projects/alura-2.png",
+          "/projects/alura-3.png"
+        ],
+        featured: false
+      }
+    ],
     demo: "Live Demo",
   },
   features: {
