@@ -860,7 +860,12 @@ section {
 /* --- COMPREHENSIVE MOBILE RESPONSIVENESS OVERHAUL --- */
 @media (max-width: 768px) {
   .container {
-    padding: 0 1.2rem;
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding: 4.5rem 1.25rem 3rem 1.25rem !important;
+    margin: 0 auto !important;
+    scroll-margin-top: 4.5rem;
+    box-sizing: border-box !important;
   }
   
   .hero-title {
@@ -887,8 +892,8 @@ section {
 
   .about-story-card {
     grid-template-columns: 1fr !important;
-    padding: 1.8rem 1.4rem !important;
-    gap: 2rem !important;
+    padding: 1.6rem 1.25rem !important;
+    gap: 1.8rem !important;
   }
 
   .about-photo-img {
@@ -896,41 +901,57 @@ section {
   }
 
   .grid-3, .grid-2 {
-    grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .timeline-wrapper {
     padding: 1rem 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .timeline-line {
-    left: 20px !important;
+    left: 12px !important;
     transform: none !important;
   }
 
   .timeline-item {
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .timeline-node {
-    left: 20px !important;
+    left: 12px !important;
     transform: translateX(-50%) !important;
   }
 
   .timeline-tilt {
-    margin-left: 48px !important;
-    width: calc(100% - 48px) !important;
+    margin-left: 32px !important;
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    box-sizing: border-box !important;
   }
 
   .timeline-left .timeline-tilt,
   .timeline-right .timeline-tilt {
-    margin-left: 48px !important;
+    margin-left: 32px !important;
     margin-right: 0 !important;
   }
 
   .timeline-content {
     text-align: left !important;
+    padding: 1.2rem 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .timeline-left .timeline-tags,
