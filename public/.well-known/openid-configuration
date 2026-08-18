@@ -1,0 +1,26 @@
+{
+  "issuer": "https://victormussoline.dev",
+  "authorization_endpoint": "https://victormussoline.dev/oauth/authorize",
+  "token_endpoint": "https://victormussoline.dev/oauth/token",
+  "jwks_uri": "https://victormussoline.dev/oauth/jwks",
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials"
+  ],
+  "response_types_supported": [
+    "code"
+  ],
+  "agent_auth": {
+    "skill": "https://isitagentready.com/.well-known/agent-skills/auth-md/SKILL.md",
+    "register_uri": "https://victormussoline.dev/agent/register",
+    "identity_types_supported": [
+      "anonymous"
+    ],
+    "anonymous": {
+      "credential_types_supported": [
+        "api_key"
+      ]
+    },
+    "claim_uri": "https://victormussoline.dev/agent/claim"
+  }
+}

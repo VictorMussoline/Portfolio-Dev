@@ -1,0 +1,19 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://victormussoline.dev/api",
+      "service-desc": [
+        {
+          "href": "https://victormussoline.dev/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://victormussoline.dev/docs",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

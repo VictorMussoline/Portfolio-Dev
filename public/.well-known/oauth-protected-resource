@@ -1,0 +1,13 @@
+{
+  "resource": "https://victormussoline.dev/api",
+  "authorization_servers": [
+    "https://victormussoline.dev"
+  ],
+  "scopes_supported": [
+    "read",
+    "write"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ]
+}

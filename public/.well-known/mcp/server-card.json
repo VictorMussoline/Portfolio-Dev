@@ -1,0 +1,12 @@
+{
+  "serverInfo": {
+    "name": "Victor Mussoline Portfolio MCP Server",
+    "version": "1.0.0"
+  },
+  "endpoint": "https://victormussoline.dev/mcp",
+  "capabilities": {
+    "tools": {},
+    "resources": {},
+    "prompts": {}
+  }
+}
