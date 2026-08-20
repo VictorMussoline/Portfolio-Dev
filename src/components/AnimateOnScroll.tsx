@@ -15,7 +15,7 @@ export function AnimateOnScroll({
   scale = 0.94
 }: AnimateOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { amount: 0.15 });
+  const isInView = useInView(ref, { amount: 0.15, once: true });
 
   const getInitialOffset = () => {
     switch (direction) {

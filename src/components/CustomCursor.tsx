@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import "./CustomCursor.css";
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
+
+  // Offset calculations using useTransform
+  const dotX = useTransform(mouseX, (x) => x - 4);
+  const dotY = useTransform(mouseY, (y) => y - 4);
+
+  const outlineTargetX = useTransform(mouseX, (x) => x - 20);
+  const outlineTargetY = useTransform(mouseY, (y) => y - 20);
+
+  // Smooth springs for outer circle
+  const outlineX = useSpring(outlineTargetX, { stiffness: 150, damping: 15, mass: 0.5 });
+  const outlineY = useSpring(outlineTargetY, { stiffness: 150, damping: 15, mass: 0.5 });
 
   useEffect(() => {
     // Apenas ativa se tiver mouse (ignora touch/mobile)
@@ -14,7 +26,8 @@ export function CustomCursor() {
     }
 
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -38,7 +51,7 @@ export function CustomCursor() {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   if (isMobile) return null;
 
@@ -46,23 +59,27 @@ export function CustomCursor() {
     <>
       <motion.div
         className="cursor-dot"
+        style={{
+          x: dotX,
+          y: dotY,
+        }}
         animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
           scale: isHovering ? 0 : 1,
         }}
         transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
       />
       <motion.div
         className="cursor-outline"
+        style={{
+          x: outlineX,
+          y: outlineY,
+        }}
         animate={{
-          x: mousePosition.x - 20,
-          y: mousePosition.y - 20,
           scale: isHovering ? 1.5 : 1,
           backgroundColor: isHovering ? "rgba(41, 151, 255, 0.1)" : "rgba(0, 0, 0, 0)",
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
       />
     </>
   );
 }
+

@@ -87,8 +87,38 @@ export const pt = {
   },
   projects: {
     title: "Projetos em Destaque",
+    allTitle: "Todos os Projetos",
+    allTitleHighlight: "Todos",
+    allTitleRest: "os Projetos",
     featuredBadge: "Destaque",
     featured: [
+      {
+        id: "arami-psl-jornadas",
+        name: "Arami: PSL Jornadas",
+        description: "Arami é a plataforma oficial da PsicoSistemoLogia para acompanhar sua Jornada Restaurativa. Desenvolvido para apoiar seu processo de desenvolvimento pessoal, o Arami reúne jornadas estruturadas, práticas restaurativas, conteúdo exclusivo e uma comunidade acolhedora em um único aplicativo. Cada etapa da jornada foi planejada para respeitar seu ritmo e proporcionar uma experiência significativa de aprendizado, reflexão e crescimento.",
+        topics: ["React Native", "TypeScript", "Expo", "Redux Toolkit"],
+        homepage: "https://play.google.com/store/apps/details?id=com.psl.arami&hl=en-US&ah=87IIPeiH48M02EUUQ433IxROB6Q",
+        featured: true,
+        isPlayStore: true,
+        demoLabel: "Página da Loja",
+        images: [
+          "/projects/aramiapp-1.png",
+          "/projects/aramiapp-2.png",
+          "/projects/aramiapp-3.png"
+        ]
+      },
+      {
+        id: "dashboard-arami",
+        name: "Dashboard Arami",
+        description: "Painel administrativo e gerencial para controle operacional, métricas de engajamento e monitoramento da plataforma Arami.",
+        topics: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
+        images: [
+          "/projects/aramidash-1.png",
+          "/projects/aramidash-2.png",
+          "/projects/aramidash-3.png"
+        ],
+        featured: true
+      },
       {
         id: "fincontrol",
         name: "FinControl",
@@ -129,7 +159,7 @@ export const pt = {
           "/projects/portfolio-2.png",
           "/projects/portfolio-3.png"
         ],
-        featured: true
+        featured: false
       },
       {
         id: "imersao-dev-alura",
@@ -147,6 +177,8 @@ export const pt = {
       }
     ],
     demo: "Ver Demo",
+    viewAll: "Ver todos os projetos!",
+    backToHome: "Voltar para o Início",
   },
   features: {
     title: "Diferenciais",

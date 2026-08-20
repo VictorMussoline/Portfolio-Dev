@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Github, ExternalLink, Sparkles } from "lucide-react";
+import { Github, ExternalLink, Sparkles, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import "./ProjectCard.css";
@@ -8,13 +8,24 @@ export interface ProjectCardProps {
   title: string;
   description: string;
   tech: string[] | string;
-  github: string;
+  github?: string;
   demo?: string;
   image?: string;
   images?: string[];
   featured?: boolean;
   featuredLabel?: string;
+  demoLabel?: string;
+  isPlayStore?: boolean;
 }
+
+const PlayStoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 512 512" width="14" height="14" style={{ flexShrink: 0, overflow: "visible", ...props.style }} {...props}>
+    <path d="M32.5 12C30 14.5 28.5 18.5 28.5 23.5V488.5C28.5 493.5 30 497.5 32.5 500L35 502.5L259.5 278V234L35 9.5L32.5 12Z" fill="#00c3ff"/>
+    <path d="M338 350.5L259.5 278V234L338 161.5L340.5 163L429.5 213.5C455 228 455 251.5 429.5 266L340.5 316.5L338 350.5Z" fill="#ffca00"/>
+    <path d="M35 502.5L259.5 278L338 350.5L35 502.5Z" fill="#ff3c51"/>
+    <path d="M35 9.5L338 161.5L259.5 278L35 9.5Z" fill="#00f076"/>
+  </svg>
+);
 
 export function ProjectCard({ 
   title, 
@@ -25,7 +36,9 @@ export function ProjectCard({
   image,
   images,
   featured,
-  featuredLabel = "Destaque"
+  featuredLabel = "Destaque",
+  demoLabel,
+  isPlayStore
 }: ProjectCardProps) {
   const techList = Array.isArray(tech) ? tech : tech.split(" · ");
   const imageList = images && images.length > 0 ? images : image ? [image] : [];
@@ -36,33 +49,37 @@ export function ProjectCard({
   const [isMobileCenter, setIsMobileCenter] = useState(false);
   const [isMobileScreen, setIsMobileScreen] = useState(false);
 
-  // Mobile Center Viewport Intersection Detection
+  // Mobile Center Viewport Intersection Detection using IntersectionObserver
   useEffect(() => {
-    const checkCenter = () => {
-      if (!cardRef.current) return;
-      const isMobile = window.innerWidth <= 850;
-      setIsMobileScreen(isMobile);
-
-      const rect = cardRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const cardCenter = rect.top + rect.height / 2;
-      const targetCenterMin = viewportHeight * 0.25;
-      const targetCenterMax = viewportHeight * 0.75;
-
-      if (isMobile && cardCenter >= targetCenterMin && cardCenter <= targetCenterMax) {
-        setIsMobileCenter(true);
-      } else {
-        setIsMobileCenter(false);
-      }
+    const checkMobile = () => {
+      setIsMobileScreen(window.innerWidth <= 850);
     };
 
-    window.addEventListener("scroll", checkCenter, { passive: true });
-    window.addEventListener("resize", checkCenter, { passive: true });
-    checkCenter();
+    window.addEventListener("resize", checkMobile, { passive: true });
+    checkMobile();
+
+    if (!cardRef.current) {
+      return () => {
+        window.removeEventListener("resize", checkMobile);
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isMobile = window.innerWidth <= 850;
+        setIsMobileCenter(isMobile && entry.isIntersecting);
+      },
+      {
+        rootMargin: "-25% 0px -25% 0px",
+        threshold: 0
+      }
+    );
+
+    observer.observe(cardRef.current);
 
     return () => {
-      window.removeEventListener("scroll", checkCenter);
-      window.removeEventListener("resize", checkCenter);
+      window.removeEventListener("resize", checkMobile);
+      observer.disconnect();
     };
   }, []);
 
@@ -97,7 +114,7 @@ export function ProjectCard({
             <span className="dot dot-yellow"></span>
             <span className="dot dot-green"></span>
           </div>
-          <div className="browser-url">{demo || github}</div>
+          <div className="browser-url">{demo || github || "Closed Source"}</div>
           {imageList.length > 1 && (
             <span className="carousel-counter">{currentIdx + 1} / {imageList.length}</span>
           )}
@@ -156,12 +173,18 @@ export function ProjectCard({
         </div>
 
         <div className="project-links">
-          <a href={github} target="_blank" rel="noopener noreferrer" className="project-link-btn" aria-label="Repositório GitHub">
-            <Github size={16} /> Code
-          </a>
+          {github ? (
+            <a href={github} target="_blank" rel="noopener noreferrer" className="project-link-btn" aria-label="Repositório GitHub">
+              <Github size={16} /> Code
+            </a>
+          ) : (
+            <button className="project-link-btn project-link-btn-locked" disabled aria-label="Código Fechado">
+              <Lock size={14} style={{ color: "#ef4444" }} /> Code
+            </button>
+          )}
           {demo && (
-            <a href={demo} target="_blank" rel="noopener noreferrer" className="project-link-btn project-link-demo" aria-label="Demonstração Ao Vivo">
-              <ExternalLink size={16} /> Live Demo
+            <a href={demo} target="_blank" rel="noopener noreferrer" className="project-link-btn project-link-demo" aria-label="Demonstração Ao Vivo" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              {isPlayStore ? <PlayStoreIcon style={{ width: 14, height: 14 }} /> : <ExternalLink size={16} />} {demoLabel || "Live Demo"}
             </a>
           )}
         </div>

@@ -87,8 +87,38 @@ export const en = {
   },
   projects: {
     title: "Featured Projects",
+    allTitle: "All Projects",
+    allTitleHighlight: "All",
+    allTitleRest: "Projects",
     featuredBadge: "Featured",
     featured: [
+      {
+        id: "arami-psl-jornadas",
+        name: "Arami: PSL Jornadas",
+        description: "Arami is the official PsicoSistemoLogia platform for tracking your Restorative Journey. Developed to support your personal development process, Arami brings together structured journeys, restorative practices, exclusive content, and a welcoming community in a single app. Each stage of the journey has been planned to respect your pace and provide a meaningful experience of learning, reflection, and growth.",
+        topics: ["React Native", "TypeScript", "Expo", "Redux Toolkit"],
+        homepage: "https://play.google.com/store/apps/details?id=com.psl.arami&hl=en-US&ah=87IIPeiH48M02EUUQ433IxROB6Q",
+        featured: true,
+        isPlayStore: true,
+        demoLabel: "Store Page",
+        images: [
+          "/projects/aramiapp-1.png",
+          "/projects/aramiapp-2.png",
+          "/projects/aramiapp-3.png"
+        ]
+      },
+      {
+        id: "dashboard-arami",
+        name: "Dashboard Arami",
+        description: "Administrative dashboard for operational control, user engagement metrics, and system monitoring for the Arami platform.",
+        topics: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
+        images: [
+          "/projects/aramidash-1.png",
+          "/projects/aramidash-2.png",
+          "/projects/aramidash-3.png"
+        ],
+        featured: true
+      },
       {
         id: "fincontrol",
         name: "FinControl",
@@ -129,7 +159,7 @@ export const en = {
           "/projects/portfolio-2.png",
           "/projects/portfolio-3.png"
         ],
-        featured: true
+        featured: false
       },
       {
         id: "imersao-dev-alura",
@@ -147,6 +177,8 @@ export const en = {
       }
     ],
     demo: "Live Demo",
+    viewAll: "View all projects!",
+    backToHome: "Back to Home",
   },
   features: {
     title: "Why work with me",
