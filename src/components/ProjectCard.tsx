@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Github, ExternalLink, Sparkles, Lock } from "lucide-react";
+import { Github, ExternalLink, Sparkles, Lock, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import "./ProjectCard.css";
@@ -7,6 +7,7 @@ import "./ProjectCard.css";
 export interface ProjectCardProps {
   title: string;
   description: string;
+  summary?: string;
   tech: string[] | string;
   github?: string;
   demo?: string;
@@ -15,7 +16,9 @@ export interface ProjectCardProps {
   featured?: boolean;
   featuredLabel?: string;
   demoLabel?: string;
+  ctaLabel?: string;
   isPlayStore?: boolean;
+  onSelect?: () => void;
 }
 
 const PlayStoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -37,11 +40,16 @@ export function ProjectCard({
   images,
   featured,
   featuredLabel = "Destaque",
+  summary,
   demoLabel,
-  isPlayStore
+  ctaLabel = "Clique para ver detalhes",
+  isPlayStore,
+  onSelect
 }: ProjectCardProps) {
   const techList = Array.isArray(tech) ? tech : tech.split(" · ");
+  const visibleTechList = techList.slice(0, 5);
   const imageList = images && images.length > 0 ? images : image ? [image] : [];
+  const cardSummary = summary || description;
   
   const cardRef = useRef<HTMLDivElement>(null);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -102,9 +110,13 @@ export function ProjectCard({
   const cardInner = (
     <div 
       ref={cardRef}
-      className={`card project-card ${featured ? "project-card-featured" : ""} ${activeHover ? "is-hovered" : ""}`}
+      className={`card project-card ${featured ? "project-card-featured" : ""} ${activeHover ? "is-hovered" : ""} ${onSelect ? "project-card-clickable" : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onSelect}
+      role={onSelect ? "button" : undefined}
+      tabIndex={onSelect ? 0 : undefined}
+      onKeyDown={onSelect ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(); } } : undefined}
     >
       {/* Mockup Preview Frame */}
       <div className="project-preview-frame">
@@ -164,15 +176,20 @@ export function ProjectCard({
       {/* Content Body */}
       <div className="project-content">
         <h3 className="project-title">{title}</h3>
-        <p className="project-desc">{description}</p>
+        <p className="project-desc">{cardSummary}</p>
+
+        <div className="project-card-cta" aria-hidden="true">
+          <span>{ctaLabel}</span>
+          <ChevronRight size={14} />
+        </div>
 
         <div className="project-tech-tags">
-          {techList.map((item, idx) => (
+          {visibleTechList.map((item, idx) => (
             <span key={idx} className="project-tech-tag">{item}</span>
           ))}
         </div>
 
-        <div className="project-links">
+        <div className="project-links" onClick={(e) => e.stopPropagation()}>
           {github ? (
             <a href={github} target="_blank" rel="noopener noreferrer" className="project-link-btn" aria-label="Repositório GitHub">
               <Github size={16} /> Code

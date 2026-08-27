@@ -12,6 +12,7 @@ import { MagneticElement } from "./components/MagneticElement";
 import Tilt from "react-parallax-tilt";
 
 import { Navbar } from "./components/Navbar";
+import { ProjectModal } from "./components/ProjectModal";
 
 const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw];
 const BUILD_ICONS = [Smartphone, Monitor, Zap, Bot, Cloud, Layers];
@@ -25,6 +26,7 @@ const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
 export default function Portfolio() {
   const { t } = useI18n();
   const [viewingAllProjects, setViewingAllProjects] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
   // Parallax effects
   const { scrollY } = useScroll();
@@ -76,6 +78,7 @@ export default function Portfolio() {
                   <ProjectCard
                     title={item.name}
                     description={item.description}
+                    summary={item.cardSummary}
                     tech={item.topics}
                     github={item.html_url}
                     demo={item.homepage}
@@ -83,7 +86,9 @@ export default function Portfolio() {
                     featured={item.featured}
                     featuredLabel={t.projects.featuredBadge}
                     demoLabel={item.demoLabel}
+                    ctaLabel={t.projects.clickForDetails}
                     isPlayStore={item.isPlayStore}
+                    onSelect={() => setSelectedProject(item)}
                   />
                 </AnimateOnScroll>
               ))}
@@ -244,7 +249,11 @@ export default function Portfolio() {
           {/* PROJETOS (MOCKED SHOWCASE WITH CAROUSELS) */}
           <section id="projects" className="container">
             <AnimateOnScroll>
-              <h2 className="section-title">{t.projects.title}</h2>
+              <h2 className="section-title">
+                {t.projects.titleBeforeHighlight ? `${t.projects.titleBeforeHighlight} ` : ""}
+                <span className="highlight">{t.projects.titleHighlight || "Featured"}</span>
+                {t.projects.titleAfterHighlight ? ` ${t.projects.titleAfterHighlight}` : ""}
+              </h2>
             </AnimateOnScroll>
             <div className="grid-2">
               {t.projects.featured?.filter((item: any) => item.featured).map((item: any, i: number) => (
@@ -252,6 +261,7 @@ export default function Portfolio() {
                   <ProjectCard
                     title={item.name}
                     description={item.description}
+                    summary={item.cardSummary}
                     tech={item.topics}
                     github={item.html_url}
                     demo={item.homepage}
@@ -259,7 +269,9 @@ export default function Portfolio() {
                     featured={item.featured}
                     featuredLabel={t.projects.featuredBadge}
                     demoLabel={item.demoLabel}
+                    ctaLabel={t.projects.clickForDetails}
                     isPlayStore={item.isPlayStore}
+                    onSelect={() => setSelectedProject(item)}
                   />
                 </AnimateOnScroll>
               ))}
@@ -334,6 +346,13 @@ export default function Portfolio() {
           </section>
         </>
       )}
+
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        labels={t.projects.modal}
+        featuredBadge={t.projects.featuredBadge}
+      />
 
       <footer className="footer">
         © {new Date().getFullYear()} Victor Mussoline. {t.footer.rights}

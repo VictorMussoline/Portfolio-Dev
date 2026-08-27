@@ -87,16 +87,39 @@ export const en = {
   },
   projects: {
     title: "Featured Projects",
+    titleBeforeHighlight: "",
+    titleHighlight: "Featured",
+    titleAfterHighlight: "Projects",
     allTitle: "All Projects",
     allTitleHighlight: "All",
     allTitleRest: "Projects",
     featuredBadge: "Featured",
+    clickForDetails: "Click to view details",
+    modal: {
+      close: "Close",
+      overview: "Overview",
+      features: "Key Features",
+      technologies: "Tech & Architecture",
+      viewLive: "Visit Application",
+      viewStore: "View on Play Store",
+      viewCode: "View Code",
+      closedSource: "Proprietary Code",
+      gallery: "Project Gallery"
+    },
     featured: [
       {
         id: "arami-psl-jornadas",
         name: "Arami: PSL Jornadas",
         description: "Arami is the official PsicoSistemoLogia platform for tracking your Restorative Journey. Developed to support your personal development process, Arami brings together structured journeys, restorative practices, exclusive content, and a welcoming community in a single app. Each stage of the journey has been planned to respect your pace and provide a meaningful experience of learning, reflection, and growth.",
+        cardSummary: "Mobile restorative-journey platform with guided progress, multimedia content, and a supportive community.",
         topics: ["React Native", "TypeScript", "Expo", "Redux Toolkit"],
+        features: [
+          "Guided journeys with step-by-step progress tracking",
+          "Integrated multimedia player for restorative practices and meditations",
+          "Supportive in-app community for mutual experience exchange",
+          "Offline-first architecture with periodic background synchronization",
+          "Responsive mobile UI built with Expo for iOS & Android"
+        ],
         homepage: "https://play.google.com/store/apps/details?id=com.psl.arami&hl=en-US&ah=87IIPeiH48M02EUUQ433IxROB6Q",
         featured: true,
         isPlayStore: true,
@@ -111,7 +134,14 @@ export const en = {
         id: "dashboard-arami",
         name: "Dashboard Arami",
         description: "Administrative dashboard for operational control, user engagement metrics, and system monitoring for the Arami platform.",
+        cardSummary: "Operations dashboard with real-time metrics, user management, and journey tracking.",
         topics: ["React", "TypeScript", "Tailwind CSS", "Recharts"],
+        features: [
+          "Real-time analytics and user engagement dashboard",
+          "User administration, role management, and active journey tracking",
+          "Interactive retention and activity charts powered by Recharts",
+          "Content management, notifications, and publication workflow"
+        ],
         images: [
           "/projects/aramidash-1.png",
           "/projects/aramidash-2.png",
@@ -123,7 +153,14 @@ export const en = {
         id: "fincontrol",
         name: "FinControl",
         description: "Full financial management dashboard featuring real-time analytics charts, income/expense tracking, cash flow, and visual reports.",
+        cardSummary: "Complete financial management with live charts, smart cash flow, and visual reporting.",
         topics: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Supabase"],
+        features: [
+          "Smart cash flow tracking with automated transaction categorization",
+          "Real-time authentication and database powered by Supabase",
+          "Visual charts and detailed budget forecasting",
+          "Responsive glassmorphic dark mode user interface"
+        ],
         html_url: "https://github.com/VictorMussoline/FinControl",
         homepage: "https://fincontrol-open-app.vercel.app",
         images: [
@@ -137,7 +174,14 @@ export const en = {
         id: "techforge",
         name: "TechForge",
         description: "Institutional website & IT services showcase for TechForge, built with futuristic UI design, live monitoring highlights, and cloud solutions.",
+        cardSummary: "Institutional website with futuristic visuals, service showcase, and a premium digital presence.",
         topics: ["React", "TypeScript", "Vite", "Framer Motion", "CSS3"],
+        features: [
+          "Futuristic user interface with smooth Framer Motion micro-interactions",
+          "Structured service catalog for IT and cloud infrastructure solutions",
+          "SEO-optimized architecture with high Google Lighthouse scores",
+          "Fully responsive and accessible layout across all screens"
+        ],
         html_url: "https://github.com/VictorMussoline/TechForge-Site",
         homepage: "https://site-techforge.vercel.app",
         images: [
@@ -151,7 +195,14 @@ export const en = {
         id: "portfolio-dev",
         name: "My Portfolio",
         description: "High-performance Portfolio Web application with glassmorphic design, full internationalization (i18n), Apple-style animations, and PWA support.",
+        cardSummary: "Premium portfolio with glassmorphism, i18n, smooth motion, and installable PWA behavior.",
         topics: ["React", "TypeScript", "Vite", "Framer Motion", "PWA"],
+        features: [
+          "Glassmorphic dark mode design with interactive particle and cursor effects",
+          "Full bilingual internationalization support (PT/EN)",
+          "Installable Progressive Web App (PWA)",
+          "Production-grade web performance and accessibility"
+        ],
         html_url: "https://github.com/VictorMussoline/Portfolio-Dev",
         homepage: "https://victormussoline.vercel.app",
         images: [
@@ -165,7 +216,13 @@ export const en = {
         id: "imersao-dev-alura",
         name: "Bootcamp Dev Alura IA",
         description: "Interactive web projects built during Alura's Dev Immersion, featuring mini-games, calculators, and programming logic tools.",
+        cardSummary: "Interactive mini-project collection and logic challenges built for hands-on learning.",
         topics: ["JavaScript", "HTML5", "CSS3", "Logic Programming"],
+        features: [
+          "Interactive collection of mini-apps and programming logic challenges",
+          "Modular code structure and clean architecture",
+          "Intuitive UI designed for interactive learning"
+        ],
         html_url: "https://github.com/VictorMussoline/Imersao-Dev-Alura",
         homepage: "https://victormussoline.github.io/imersao-dev-alura-10/",
         images: [
