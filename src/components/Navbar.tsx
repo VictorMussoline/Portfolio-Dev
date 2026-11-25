@@ -50,30 +50,48 @@ export function Navbar({ onBackToHome, viewingAllProjects }: NavbarProps) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
+      const path = window.location.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+      if (viewingAllProjects || path === "all-projects" || path === "projects/all") {
+        setActiveSection("");
+        return;
+      }
+
       // Section tracking for nav highlights
       const sectionIds = ["contact", "projects", "experience", "about"];
       const scrollPosition = window.scrollY + window.innerHeight * 0.35;
 
       let found = "";
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
-            found = id;
-            break;
+      if (window.scrollY > 150) {
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el) {
+            const top = el.offsetTop;
+            if (scrollPosition >= top) {
+              found = id;
+              break;
+            }
           }
         }
       }
       setActiveSection(found);
+
+      // Automatically sync URL pathname on scroll
+      const targetPath = found ? `/${found}` : "/";
+      if (window.location.pathname !== targetPath) {
+        window.history.replaceState({ section: found || "hero" }, "", targetPath);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [viewingAllProjects]);
 
   const scrollToSection = (id: string) => {
+    const path = id === "hero" ? "/" : `/${id}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState({ section: id }, "", path);
+    }
     if (viewingAllProjects && onBackToHome) {
       onBackToHome();
       setTimeout(() => {
@@ -87,13 +105,15 @@ export function Navbar({ onBackToHome, viewingAllProjects }: NavbarProps) {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+    } else if (id === "hero") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
     <header className={`navbar-wrapper ${isScrolled ? "scrolled" : ""}`}>
       <nav className="navbar-container">
-        <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }} className="navbar-logo" aria-label="Home">
+        <a href="/" onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }} className="navbar-logo" aria-label="Home">
           <div className="logo-stack-container">
             <AnimatePresence mode="wait">
               <motion.img
@@ -116,8 +136,12 @@ export function Navbar({ onBackToHome, viewingAllProjects }: NavbarProps) {
             const isActive = activeSection === item.id;
             return (
               <li key={item.id}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
+                <a
+                  href={`/${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
                   className={`nav-link ${isActive ? "active" : ""}`}
                 >
                   {t.nav[item.key as keyof typeof t.nav]}
@@ -138,7 +162,7 @@ export function Navbar({ onBackToHome, viewingAllProjects }: NavbarProps) {
                       />
                     )}
                   </AnimatePresence>
-                </button>
+                </a>
               </li>
             );
           })}

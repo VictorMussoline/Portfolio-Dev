@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, Code2, Sparkles, Monitor, Bot, Cloud, Laptop, Rocket, ArrowLeft } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
@@ -18,6 +18,12 @@ const FEATURE_ICONS = [Layers, MessageCircle, Database, Zap, Smartphone, Refresh
 const BUILD_ICONS = [Smartphone, Monitor, Zap, Bot, Cloud, Layers];
 const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
 
+const isAllProjectsPath = () => {
+  if (typeof window === "undefined") return false;
+  const rawPath = window.location.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+  return rawPath === "all-projects" || rawPath === "projects/all" || rawPath === "projetos/todos";
+};
+
 /**
  * Main Application Component
  * Integrates all sections (Navbar, Hero, About, Stack, Projects, Contact)
@@ -25,23 +31,95 @@ const TIMELINE_ICONS = [Laptop, Code2, Sparkles, Rocket];
  */
 export default function Portfolio() {
   const { t } = useI18n();
-  const [viewingAllProjects, setViewingAllProjects] = useState(false);
+  const [viewingAllProjects, setViewingAllProjects] = useState(isAllProjectsPath);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
   // Parallax effects
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 250]);
 
+  // Handle direct URL deep-linking on initial mount
+  useEffect(() => {
+    const rawPath = window.location.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+    if (!rawPath) return;
+
+    if (rawPath === "all-projects" || rawPath === "projects/all" || rawPath === "projetos/todos") {
+      setViewingAllProjects(true);
+      window.scrollTo({ top: 0, behavior: "auto" });
+      return;
+    }
+
+    const aliasMap: Record<string, string> = {
+      sobre: "about",
+      trajetoria: "experience",
+      projetos: "projects",
+      contato: "contact"
+    };
+    const targetSection = aliasMap[rawPath] || rawPath;
+    const validSections = ["about", "what-i-build", "experience", "projects", "contact"];
+
+    if (validSections.includes(targetSection)) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetSection);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Handle browser back and forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const rawPath = window.location.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+      if (rawPath === "all-projects" || rawPath === "projects/all" || rawPath === "projetos/todos") {
+        setViewingAllProjects(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      setViewingAllProjects(false);
+      const aliasMap: Record<string, string> = {
+        sobre: "about",
+        trajetoria: "experience",
+        projetos: "projects",
+        contato: "contact"
+      };
+      const targetSection = aliasMap[rawPath] || rawPath;
+      if (!targetSection) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      setTimeout(() => {
+        const el = document.getElementById(targetSection);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 50);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   const handleViewAll = (e: React.MouseEvent) => {
     e.preventDefault();
+    window.history.pushState({ section: "all-projects" }, "", "/all-projects");
     setViewingAllProjects(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleBack = (e: React.MouseEvent) => {
     e.preventDefault();
+    window.history.pushState({ section: "projects" }, "", "/projects");
     setViewingAllProjects(false);
-    window.scrollTo({ top: 0, behavior: "auto" });
+    setTimeout(() => {
+      const el = document.getElementById("projects");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 50);
   };
 
   return (
@@ -86,6 +164,8 @@ export default function Portfolio() {
                     featured={item.featured}
                     featuredLabel={t.projects.featuredBadge}
                     demoLabel={item.demoLabel}
+                    appStoreUrl={item.appStoreUrl}
+                    appStoreLabel={item.appStoreLabel}
                     ctaLabel={t.projects.clickForDetails}
                     isPlayStore={item.isPlayStore}
                     onSelect={() => setSelectedProject(item)}
@@ -137,12 +217,28 @@ export default function Portfolio() {
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 <MagneticElement>
-                  <a className="btn-primary" href="#projects">
+                  <a
+                    className="btn-primary"
+                    href="/projects"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState({ section: "projects" }, "", "/projects");
+                      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
                     {t.hero.btnProjects}
                   </a>
                 </MagneticElement>
                 <MagneticElement>
-                  <a className="btn-outline" href="#contact">
+                  <a
+                    className="btn-outline"
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState({ section: "contact" }, "", "/contact");
+                      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
                     {t.hero.btnContact}
                   </a>
                 </MagneticElement>
@@ -269,6 +365,8 @@ export default function Portfolio() {
                     featured={item.featured}
                     featuredLabel={t.projects.featuredBadge}
                     demoLabel={item.demoLabel}
+                    appStoreUrl={item.appStoreUrl}
+                    appStoreLabel={item.appStoreLabel}
                     ctaLabel={t.projects.clickForDetails}
                     isPlayStore={item.isPlayStore}
                     onSelect={() => setSelectedProject(item)}

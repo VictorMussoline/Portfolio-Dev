@@ -102,11 +102,98 @@ export const en = {
       technologies: "Tech & Architecture",
       viewLive: "Visit Application",
       viewStore: "View on Play Store",
+      viewAppStore: "View on App Store",
       viewCode: "View Code",
       closedSource: "Proprietary Code",
       gallery: "Project Gallery"
     },
     featured: [
+      {
+        id: "velo-servicos-gerais",
+        name: "Velo: Serviços Gerais",
+        description: "Velo is a full-featured general services marketplace app built end-to-end from scratch by me. The platform connects customers looking for everyday services—such as home repairs, maintenance, cleaning, electrical work, and technical assistance—with qualified local professionals, offering quote requests, order management, direct communication, and end-to-end service tracking in one place.",
+        cardSummary: "Full-featured mobile marketplace connecting customers with general service professionals, quotes, and order tracking.",
+        topics: ["React Native", "TypeScript", "Expo", "iOS & Android"],
+        features: [
+          "Fast matching between customers and general service providers by category and location",
+          "End-to-end in-app quote requests, proposals, and service hiring flow",
+          "Professional profiles featuring service catalogs, ratings, and completed job history",
+          "Real-time tracking of service requests, bookings, and order status",
+          "Built entirely from scratch and published on both Google Play and the App Store"
+        ],
+        homepage: "https://play.google.com/store/apps/details?id=com.victormussoline.appvelo&pcampaignid=web_share",
+        appStoreUrl: "https://apps.apple.com/br/app/velo-servi%C3%A7os-gerais/id6810832850",
+        images: [
+          "/projects/velo-app/1.jpg",
+          "/projects/velo-app/2.jpg",
+          "/projects/velo-app/3.jpg"
+        ],
+        featured: true,
+        isPlayStore: true,
+        demoLabel: "Google Play",
+        appStoreLabel: "App Store"
+      },
+      {
+        id: "velo-api",
+        name: "Velo API: Core Backend & Marketplace",
+        description: "Robust and scalable RESTful API built with Java 21 and Spring Boot 3 powering the entire Velo ecosystem. Orchestrates geospatial service matching between clients and providers, handles Pix payments and subscriptions through Asaas and RevenueCat, powers in-app chat with Firebase FCM push notifications, and enforces security via Spring Security, JWT, and social authentication. The entire API and cloud infrastructure were configured by me to run on Google Cloud Platform (GCP) in the most optimized way possible, balancing high performance, scalability, and cost efficiency.",
+        cardSummary: "Java 21 & Spring Boot 3 RESTful API optimized on Google Cloud, powering geospatial matching, Pix/subscriptions, push-enabled chat, and social auth.",
+        topics: [
+          "Java 21",
+          "Spring Boot 3",
+          "Google Cloud (GCP)",
+          "PostgreSQL",
+          "Docker",
+          "Spring Security & JWT",
+          "Firebase FCM",
+          "Asaas & RevenueCat"
+        ],
+        features: [
+          "Geospatial matching engine connecting customers and service providers by proximity and category",
+          "Full Pix payment and subscription billing integration with Asaas and RevenueCat",
+          "In-app messaging backed by real-time push notifications via Firebase FCM",
+          "Hardened authentication and authorization with Spring Security, JWT, and social login",
+          "Infrastructure and deployment configured on Google Cloud Platform (GCP), optimized for performance, scalability, and cost efficiency",
+          "Containerized architecture with Docker and relational persistence on PostgreSQL"
+        ],
+        images: [
+          "/projects/velo-api/architecture.svg"
+        ],
+        featured: true
+      },
+      {
+        id: "velo-dashboard",
+        name: "Velo Dashboard: Admin Panel & Analytics",
+        description: "Executive and administrative dashboard built to manage the entire Velo ecosystem in real time. The platform centralizes operational and financial telemetry with interactive charts, full user, provider, and customer management (featuring rankings, live availability, and document verification), in-app credit and coin sales synchronized with Google Play and Apple App Store via RevenueCat, partner store management with renewal cycles, report moderation, and a dedicated Conversion Analytics module with end-to-end funnel tracking and drop-off diagnostics.",
+        cardSummary: "Executive admin dashboard for the Velo ecosystem with real-time telemetry, user management, RevenueCat credit sales, partners, moderation, and funnel analytics.",
+        topics: [
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "RevenueCat",
+          "Funnel Analytics",
+          "REST API"
+        ],
+        features: [
+          "Real-time executive dashboard with financial and operational KPIs, partner billing alerts, and interactive charts (area, bar, and line views)",
+          "Centralized management of users, providers (live availability, job rankings, star ratings, and service coverage areas), and customers with advanced filters",
+          "Credits & Sales module featuring standardized coin bundles synced with Google Play and App Store via RevenueCat and a full transaction log",
+          "Partner Companies management for proximity-based in-app banners, 90-day billing cycle tracking, quick renewals, and overdue notifications",
+          "Security & Audit center for document verification and report moderation with status workflows (pending, under review, and resolved)",
+          "Conversion & Funnel Analytics tracking the full journey (demand → contact → acceptance → completion) with automated drop-off diagnostics"
+        ],
+        images: [
+          "/projects/dashboard/1.png",
+          "/projects/dashboard/2.png",
+          "/projects/dashboard/3.png",
+          "/projects/dashboard/4.png",
+          "/projects/dashboard/5.png",
+          "/projects/dashboard/6.png",
+          "/projects/dashboard/7.png",
+          "/projects/dashboard/8.png"
+        ],
+        featured: true
+      },
       {
         id: "arami-psl-jornadas",
         name: "Arami: PSL Jornadas",
@@ -121,9 +208,11 @@ export const en = {
           "Responsive mobile UI built with Expo for iOS & Android"
         ],
         homepage: "https://play.google.com/store/apps/details?id=com.psl.arami&hl=en-US&ah=87IIPeiH48M02EUUQ433IxROB6Q",
+        appStoreUrl: "https://apps.apple.com/br/app/arami-psl-jornadas/id6791764558",
         featured: true,
         isPlayStore: true,
-        demoLabel: "Store Page",
+        demoLabel: "Google Play",
+        appStoreLabel: "App Store",
         images: [
           "/projects/aramiapp-1.png",
           "/projects/aramiapp-2.png",
@@ -147,7 +236,7 @@ export const en = {
           "/projects/aramidash-2.png",
           "/projects/aramidash-3.png"
         ],
-        featured: true
+        featured: false
       },
       {
         id: "fincontrol",
@@ -168,7 +257,7 @@ export const en = {
           "/projects/fincontrol-2.png",
           "/projects/fincontrol-3.png"
         ],
-        featured: true
+        featured: false
       },
       {
         id: "techforge",
@@ -189,7 +278,7 @@ export const en = {
           "/projects/techforge-2.png",
           "/projects/techforge-3.png"
         ],
-        featured: true
+        featured: false
       },
       {
         id: "portfolio-dev",
@@ -203,7 +292,6 @@ export const en = {
           "Installable Progressive Web App (PWA)",
           "Production-grade web performance and accessibility"
         ],
-        html_url: "https://github.com/VictorMussoline/Portfolio-Dev",
         homepage: "https://victormussoline.vercel.app",
         images: [
           "/projects/portfolio-1.png",
