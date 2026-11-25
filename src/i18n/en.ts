@@ -18,6 +18,30 @@ export const en = {
     btnContact: "Get in Touch",
     btnCV: "Download CV",
   },
+  metrics: {
+    items: [
+      {
+        value: "2+",
+        label: "Store Apps",
+        description: "Google Play & App Store published"
+      },
+      {
+        value: "Full-Stack",
+        label: "Mobile & Cloud",
+        description: "React Native, Web, Java 21 & GCP"
+      },
+      {
+        value: "C1",
+        label: "Advanced English",
+        description: "DET Score 130 · Global Fluency"
+      },
+      {
+        value: "100%",
+        label: "Production-Ready",
+        description: "Scalable architectures, Docker & APIs"
+      }
+    ]
+  },
   about: {
     title: "About Me",
     p1: "Full-Stack Developer pursuing a degree in Information Systems. I combine hands-on IT operations experience (TechForge) with a deep architectural mindset to build scalable, high-performance software integrated with modern cloud infrastructure (Supabase/Vercel) and artificial intelligence.",
@@ -95,6 +119,12 @@ export const en = {
     allTitleRest: "Projects",
     featuredBadge: "Featured",
     clickForDetails: "Click to view details",
+    categories: {
+      all: "All",
+      mobile: "Mobile",
+      backend: "Backend & Cloud",
+      web: "Web & Dashboards"
+    },
     modal: {
       close: "Close",
       overview: "Overview",
@@ -110,6 +140,7 @@ export const en = {
     featured: [
       {
         id: "velo-servicos-gerais",
+        category: "mobile",
         name: "Velo: Serviços Gerais",
         description: "Velo is a full-featured general services marketplace app built end-to-end from scratch by me. The platform connects customers looking for everyday services—such as home repairs, maintenance, cleaning, electrical work, and technical assistance—with qualified local professionals, offering quote requests, order management, direct communication, and end-to-end service tracking in one place.",
         cardSummary: "Full-featured mobile marketplace connecting customers with general service professionals, quotes, and order tracking.",
@@ -135,6 +166,7 @@ export const en = {
       },
       {
         id: "velo-api",
+        category: "backend",
         name: "Velo API: Core Backend & Marketplace",
         description: "Robust and scalable RESTful API built with Java 21 and Spring Boot 3 powering the entire Velo ecosystem. Orchestrates geospatial service matching between clients and providers, handles Pix payments and subscriptions through Asaas and RevenueCat, powers in-app chat with Firebase FCM push notifications, and enforces security via Spring Security, JWT, and social authentication. The entire API and cloud infrastructure were configured by me to run on Google Cloud Platform (GCP) in the most optimized way possible, balancing high performance, scalability, and cost efficiency.",
         cardSummary: "Java 21 & Spring Boot 3 RESTful API optimized on Google Cloud, powering geospatial matching, Pix/subscriptions, push-enabled chat, and social auth.",
@@ -163,6 +195,7 @@ export const en = {
       },
       {
         id: "velo-dashboard",
+        category: "web",
         name: "Velo Dashboard: Admin Panel & Analytics",
         description: "Executive and administrative dashboard built to manage the entire Velo ecosystem in real time. The platform centralizes operational and financial telemetry with interactive charts, full user, provider, and customer management (featuring rankings, live availability, and document verification), in-app credit and coin sales synchronized with Google Play and Apple App Store via RevenueCat, partner store management with renewal cycles, report moderation, and a dedicated Conversion Analytics module with end-to-end funnel tracking and drop-off diagnostics.",
         cardSummary: "Executive admin dashboard for the Velo ecosystem with real-time telemetry, user management, RevenueCat credit sales, partners, moderation, and funnel analytics.",
@@ -196,6 +229,7 @@ export const en = {
       },
       {
         id: "arami-psl-jornadas",
+        category: "mobile",
         name: "Arami: PSL Jornadas",
         description: "Arami is the official PsicoSistemoLogia platform for tracking your Restorative Journey. Developed to support your personal development process, Arami brings together structured journeys, restorative practices, exclusive content, and a welcoming community in a single app. Each stage of the journey has been planned to respect your pace and provide a meaningful experience of learning, reflection, and growth.",
         cardSummary: "Mobile restorative-journey platform with guided progress, multimedia content, and a supportive community.",
@@ -221,6 +255,7 @@ export const en = {
       },
       {
         id: "dashboard-arami",
+        category: "web",
         name: "Dashboard Arami",
         description: "Administrative dashboard for operational control, user engagement metrics, and system monitoring for the Arami platform.",
         cardSummary: "Operations dashboard with real-time metrics, user management, and journey tracking.",
@@ -240,6 +275,7 @@ export const en = {
       },
       {
         id: "fincontrol",
+        category: "web",
         name: "FinControl",
         description: "Full financial management dashboard featuring real-time analytics charts, income/expense tracking, cash flow, and visual reports.",
         cardSummary: "Complete financial management with live charts, smart cash flow, and visual reporting.",
@@ -261,6 +297,7 @@ export const en = {
       },
       {
         id: "techforge",
+        category: "web",
         name: "TechForge",
         description: "Institutional website & IT services showcase for TechForge, built with futuristic UI design, live monitoring highlights, and cloud solutions.",
         cardSummary: "Institutional website with futuristic visuals, service showcase, and a premium digital presence.",
@@ -282,6 +319,7 @@ export const en = {
       },
       {
         id: "portfolio-dev",
+        category: "web",
         name: "My Portfolio",
         description: "High-performance Portfolio Web application with glassmorphic design, full internationalization (i18n), Apple-style animations, and PWA support.",
         cardSummary: "Premium portfolio with glassmorphism, i18n, smooth motion, and installable PWA behavior.",
@@ -302,6 +340,7 @@ export const en = {
       },
       {
         id: "imersao-dev-alura",
+        category: "web",
         name: "Bootcamp Dev Alura IA",
         description: "Interactive web projects built during Alura's Dev Immersion, featuring mini-games, calculators, and programming logic tools.",
         cardSummary: "Interactive mini-project collection and logic challenges built for hands-on learning.",

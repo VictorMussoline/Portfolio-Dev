@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, Code2, Sparkles, Monitor, Bot, Cloud, Laptop, Rocket, ArrowLeft } from "lucide-react";
+import { Github, Linkedin, Mail, Download, Layers, MessageCircle, Database, Zap, Smartphone, RefreshCw, Code2, Sparkles, Monitor, Bot, Cloud, Laptop, Rocket, ArrowLeft, Globe, ShieldCheck } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./App.css";
 
@@ -33,6 +33,41 @@ export default function Portfolio() {
   const { t } = useI18n();
   const [viewingAllProjects, setViewingAllProjects] = useState(isAllProjectsPath);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  const categoriesList = [
+    { key: "all", label: t.projects.categories?.all || "Todos" },
+    { key: "mobile", label: t.projects.categories?.mobile || "Mobile" },
+    { key: "backend", label: t.projects.categories?.backend || "Backend & Cloud" },
+    { key: "web", label: t.projects.categories?.web || "Web & Dashboards" },
+  ];
+
+  const getCategoryCount = (catKey: string, onlyFeatured = false) => {
+    const list = t.projects.featured || [];
+    const base = onlyFeatured ? list.filter((p: any) => p.featured) : list;
+    if (catKey === "all") return base.length;
+    return base.filter((p: any) => p.category === catKey).length;
+  };
+
+  const renderCategoryFilter = (onlyFeatured = false) => (
+    <div className="category-filter-wrapper">
+      {categoriesList.map((cat) => {
+        const isActive = selectedCategory === cat.key;
+        const count = getCategoryCount(cat.key, onlyFeatured);
+        return (
+          <button
+            key={cat.key}
+            onClick={() => setSelectedCategory(cat.key)}
+            className={`category-filter-btn ${isActive ? "active" : ""}`}
+            type="button"
+          >
+            <span>{cat.label}</span>
+            <span className="category-filter-count">{count}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
 
   // Parallax effects
   const { scrollY } = useScroll();
@@ -148,10 +183,11 @@ export default function Portfolio() {
                 </h1>
                 <div className="subpage-header-spacer" />
               </div>
+              {renderCategoryFilter(false)}
             </AnimateOnScroll>
 
             <div className="grid-2">
-              {t.projects.featured?.map((item: any, i: number) => (
+              {t.projects.featured?.filter((item: any) => selectedCategory === "all" || item.category === selectedCategory).map((item: any, i: number) => (
                 <AnimateOnScroll key={item.id} delay={i * 0.05} scale={0.92}>
                   <ProjectCard
                     title={item.name}
@@ -250,6 +286,34 @@ export default function Portfolio() {
               </motion.div>
             </motion.div>
           </section>
+
+          {/* MÉTRICAS DE IMPACTO */}
+          {t.metrics?.items && (
+            <section className="container metrics-container">
+              <AnimateOnScroll scale={0.96}>
+                <div className="metrics-grid">
+                  {t.metrics.items.map((metric: any, i: number) => {
+                    const METRIC_ICONS = [Smartphone, Layers, Globe, ShieldCheck];
+                    const Icon = METRIC_ICONS[i] || Sparkles;
+                    return (
+                      <Tilt key={i} tiltMaxAngleX={6} tiltMaxAngleY={6} scale={1.02} transitionSpeed={2000}>
+                        <div className="card metric-card">
+                          <div className="metric-header">
+                            <span className="metric-value">{metric.value}</span>
+                            <div className="metric-icon-box">
+                              <Icon size={20} className="metric-icon" />
+                            </div>
+                          </div>
+                          <h3 className="metric-label">{metric.label}</h3>
+                          <p className="metric-desc">{metric.description}</p>
+                        </div>
+                      </Tilt>
+                    );
+                  })}
+                </div>
+              </AnimateOnScroll>
+            </section>
+          )}
 
           {/* SOBRE */}
           <section id="about" className="container">
@@ -350,9 +414,10 @@ export default function Portfolio() {
                 <span className="highlight">{t.projects.titleHighlight || "Featured"}</span>
                 {t.projects.titleAfterHighlight ? ` ${t.projects.titleAfterHighlight}` : ""}
               </h2>
+              {renderCategoryFilter(true)}
             </AnimateOnScroll>
             <div className="grid-2">
-              {t.projects.featured?.filter((item: any) => item.featured).map((item: any, i: number) => (
+              {t.projects.featured?.filter((item: any) => item.featured && (selectedCategory === "all" || item.category === selectedCategory)).map((item: any, i: number) => (
                 <AnimateOnScroll key={item.id} delay={i * 0.1} scale={0.92}>
                   <ProjectCard
                     title={item.name}

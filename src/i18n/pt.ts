@@ -18,6 +18,30 @@ export const pt = {
     btnContact: "Entrar em Contato",
     btnCV: "Baixar CV",
   },
+  metrics: {
+    items: [
+      {
+        value: "2+",
+        label: "Apps nas Lojas",
+        description: "Google Play & App Store publicados"
+      },
+      {
+        value: "Full-Stack",
+        label: "Mobile & Cloud",
+        description: "React Native, Web, Java 21 & GCP"
+      },
+      {
+        value: "C1",
+        label: "Inglês Avançado",
+        description: "DET Score 130 · Fluência Global"
+      },
+      {
+        value: "100%",
+        label: "Produção Real",
+        description: "Arquiteturas escaláveis, Docker & APIs"
+      }
+    ]
+  },
   about: {
     title: "Sobre Mim",
     p1: "Desenvolvedor Full-Stack e graduando em Sistemas de Informação. Uno minha experiência em operações de TI (TechForge) a uma visão profunda de arquitetura para construir software escalável, eficiente e integrado com a nuvem (Supabase/Vercel) e inteligência artificial.",
@@ -95,6 +119,12 @@ export const pt = {
     allTitleRest: "os Projetos",
     featuredBadge: "Destaque",
     clickForDetails: "Clique para ver detalhes",
+    categories: {
+      all: "Todos",
+      mobile: "Mobile",
+      backend: "Backend & Cloud",
+      web: "Web & Dashboards"
+    },
     modal: {
       close: "Fechar",
       overview: "Visão Geral",
@@ -110,6 +140,7 @@ export const pt = {
     featured: [
       {
         id: "velo-servicos-gerais",
+        category: "mobile",
         name: "Velo: Serviços Gerais",
         description: "Velo é um aplicativo completo de marketplace de serviços gerais desenvolvido integralmente por mim do zero. A plataforma conecta clientes que precisam de serviços do dia a dia — como reformas, manutenção, limpeza, elétrica e assistência técnica — a profissionais qualificados, oferecendo solicitação de orçamentos, gestão de pedidos, comunicação direta e acompanhamento de todo o atendimento em um só lugar.",
         cardSummary: "Marketplace mobile completo que conecta clientes a profissionais de serviços gerais, com orçamentos e gestão de pedidos.",
@@ -135,6 +166,7 @@ export const pt = {
       },
       {
         id: "velo-api",
+        category: "backend",
         name: "Velo API: Core Backend & Marketplace",
         description: "API RESTful robusta e escalável desenvolvida em Java 21 e Spring Boot 3 que alimenta todo o ecossistema Velo. Responsável por orquestrar o matching geoespacial entre clientes e prestadores, processar pagamentos via Pix e assinaturas com Asaas e RevenueCat, gerenciar chat com notificações push via Firebase FCM e garantir segurança de ponta com Spring Security, JWT e autenticação social. Toda a API e sua infraestrutura foram configuradas por mim para rodar na Google Cloud Platform (GCP) da forma mais otimizada possível, equilibrando alta performance, escalabilidade automática e eficiência de custos.",
         cardSummary: "API RESTful em Java 21 & Spring Boot 3 configurada de forma otimizada na Google Cloud, orquestrando matching geoespacial, Pix/assinaturas, chat com push e autenticação social.",
@@ -163,6 +195,7 @@ export const pt = {
       },
       {
         id: "velo-dashboard",
+        category: "web",
         name: "Velo Dashboard: Painel Administrativo & Analytics",
         description: "Painel administrativo e executivo desenvolvido para gerenciar toda a operação do ecossistema Velo em tempo real. A plataforma centraliza telemetria operacional e financeira com gráficos interativos, gestão completa de usuários, prestadores e clientes (com rankings, disponibilidade e verificação documental), controle de créditos e vendas in-app sincronizados via RevenueCat (Google Play e App Store), administração de empresas parceiras com ciclos de renovação, moderação de denúncias e um módulo dedicado de Analytics de Conversão com funil completo e diagnóstico de pontos de abandono.",
         cardSummary: "Painel executivo do ecossistema Velo com telemetria em tempo real, gestão de usuários, créditos/RevenueCat, parceiros, moderação e funil de conversão.",
@@ -196,6 +229,7 @@ export const pt = {
       },
       {
         id: "arami-psl-jornadas",
+        category: "mobile",
         name: "Arami: PSL Jornadas",
         description: "Arami é a plataforma oficial da PsicoSistemoLogia para acompanhar sua Jornada Restaurativa. Desenvolvido para apoiar seu processo de desenvolvimento pessoal, o Arami reúne jornadas estruturadas, práticas restaurativas, conteúdo exclusivo e uma comunidade acolhedora em um único aplicativo. Cada etapa da jornada foi planejada para respeitar seu ritmo e proporcionar uma experiência significativa de aprendizado, reflexão e crescimento.",
         cardSummary: "Plataforma mobile de jornadas restaurativas com progresso guiado, conteúdo multimídia e uma comunidade acolhedora.",
@@ -221,6 +255,7 @@ export const pt = {
       },
       {
         id: "dashboard-arami",
+        category: "web",
         name: "Dashboard Arami",
         description: "Painel administrativo e gerencial para controle operacional, métricas de engajamento e monitoramento da plataforma Arami.",
         cardSummary: "Dashboard de operação com métricas em tempo real, gestão de usuários e acompanhamento de jornadas.",
@@ -240,6 +275,7 @@ export const pt = {
       },
       {
         id: "fincontrol",
+        category: "web",
         name: "FinControl",
         description: "Dashboard completo de gestão financeira com métricas em tempo real, controle de receitas/despesas, fluxo de caixa e relatórios visuais.",
         cardSummary: "Gestão financeira completa com gráficos em tempo real, fluxo de caixa inteligente e relatórios visuais.",
@@ -261,6 +297,7 @@ export const pt = {
       },
       {
         id: "techforge",
+        category: "web",
         name: "TechForge",
         description: "Website institucional e catálogo de serviços de TI para a TechForge, com design futurista, monitoramento e apresentação de soluções de infraestrutura.",
         cardSummary: "Site institucional com visual futurista, vitrine de serviços e foco em presença digital premium.",
@@ -282,6 +319,7 @@ export const pt = {
       },
       {
         id: "portfolio-dev",
+        category: "web",
         name: "Meu Portfólio",
         description: "Aplicação Web Portfólio de alta performance com design glassmorphic, suporte multilíngue (i18n), animações no estilo Apple e suporte a PWA.",
         cardSummary: "Portfólio premium com glassmorphism, i18n, animações suaves e experiência instalável como PWA.",
@@ -302,6 +340,7 @@ export const pt = {
       },
       {
         id: "imersao-dev-alura",
+        category: "web",
         name: "Bootcamp Dev Alura IA",
         description: "Plataforma interativa de projetos desenvolvidos durante a Imersão Dev da Alura, incluindo jogos, calculadoras e ferramentas de lógica de programação.",
         cardSummary: "Coleção interativa de mini-projetos e desafios de lógica, pensada para aprendizado prático.",
